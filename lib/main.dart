@@ -7,7 +7,6 @@ import 'package:bookstore/backend/config.dart';
 import 'beranda.dart';
 import 'frontpages/spscreen1.dart';
 import 'package:flutter/services.dart';
-import 'frontpages/login.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
