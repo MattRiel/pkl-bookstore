@@ -1,20 +1,25 @@
 import 'package:bookstore/bookdetails.dart';
+import 'package:bookstore/frontpages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:bookstore/backend/services.dart';
 import 'package:bookstore/homescreen.dart';
 import 'package:bookstore/backend/config.dart';
 import 'beranda.dart';
+import 'frontpages/spscreen1.dart';
+import 'frontpages/login.dart';
 
 void main() {
   final BookService bookService = BookService(googleBooksApiKey);
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/beranda',
+    initialRoute: '/spscreen1',
     routes: {
-      '/beranda' : (context) => Beranda(),
+      '/beranda': (context) => Beranda(),
       '/home': (context) => HomeScreen(bookService: bookService),
       '/details': (context) => BookDetailScreen(),
+      '/spscreen1': (context) => SplashScreen1(),
+      '/login': (context) => Login(),
     },
   ));
 }
