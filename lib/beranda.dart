@@ -668,10 +668,13 @@ class Beranda extends StatelessWidget {
           elevation: 4,
           type: BottomNavigationBarType.fixed,
           items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
-        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorit"),
-        BottomNavigationBarItem(icon: Icon(Icons.chrome_reader_mode_outlined), label: "Bacaan"),BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
-      ]),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite), label: "Favorit"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.chrome_reader_mode_outlined), label: "Bacaan"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
+          ]),
     );
   }
 }
