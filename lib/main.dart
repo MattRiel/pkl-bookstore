@@ -6,11 +6,15 @@ import 'package:bookstore/homescreen.dart';
 import 'package:bookstore/backend/config.dart';
 import 'beranda.dart';
 import 'frontpages/spscreen1.dart';
+import 'package:flutter/services.dart';
 import 'frontpages/login.dart';
 
 void main() {
-  final BookService bookService = BookService(googleBooksApiKey);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
 
+  final BookService bookService = BookService(googleBooksApiKey);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     initialRoute: '/spscreen1',
