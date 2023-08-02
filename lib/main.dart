@@ -1,12 +1,12 @@
-import 'package:bookstore/bookdetails.dart';
-import 'package:bookstore/favoriteScreen.dart';
+import 'package:bookstore/unused/bookdetails.dart';
+import 'package:bookstore/content/favoriteScreen.dart';
 import 'package:bookstore/frontpages/login.dart';
-import 'package:bookstore/profileScreen.dart';
+import 'package:bookstore/content/profileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:bookstore/backend/services.dart';
-import 'package:bookstore/homescreen.dart';
+import 'package:bookstore/unused/homescreen.dart';
 import 'package:bookstore/backend/config.dart';
-import 'beranda.dart';
+import 'content/beranda.dart';
 import 'frontpages/spscreen1.dart';
 import 'package:flutter/services.dart';
 

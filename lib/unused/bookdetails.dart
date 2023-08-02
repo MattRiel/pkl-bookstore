@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'backend/book.dart';
+import '../backend/book.dart';
 
 class BookDetailScreen extends StatelessWidget {
   @override
