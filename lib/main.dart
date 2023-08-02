@@ -1,3 +1,4 @@
+import 'package:bookstore/content/detailBuku.dart';
 import 'package:bookstore/unused/bookdetails.dart';
 import 'package:bookstore/content/favoriteScreen.dart';
 import 'package:bookstore/frontpages/login.dart';
@@ -18,7 +19,7 @@ void main() {
   final BookService bookService = BookService(googleBooksApiKey);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/beranda',
+    initialRoute: '/detail_buku',
     routes: {
       '/beranda': (context) => Beranda(),
       '/home': (context) => HomeScreen(bookService: bookService),
@@ -26,7 +27,8 @@ void main() {
       '/spscreen1': (context) => SplashScreen1(),
       '/login': (context) => Login(),
       '/favorite': (context) => FavoriteScreen(),
-      '/profile': (context) => ProfileScreen()
+      '/profile': (context) => ProfileScreen(),
+      '/detail_buku': (context) => DetailBuku(),
     },
   ));
 }
