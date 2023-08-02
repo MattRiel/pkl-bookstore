@@ -1,6 +1,7 @@
 import 'package:bookstore/bookdetails.dart';
 import 'package:bookstore/favoriteScreen.dart';
 import 'package:bookstore/frontpages/login.dart';
+import 'package:bookstore/profileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:bookstore/backend/services.dart';
 import 'package:bookstore/homescreen.dart';
@@ -17,14 +18,15 @@ void main() {
   final BookService bookService = BookService(googleBooksApiKey);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/favorite',
+    initialRoute: '/profile',
     routes: {
       '/beranda': (context) => Beranda(),
       '/home': (context) => HomeScreen(bookService: bookService),
       '/details': (context) => BookDetailScreen(),
       '/spscreen1': (context) => SplashScreen1(),
       '/login': (context) => Login(),
-      '/favorite': (context) => FavoriteScreen()
+      '/favorite': (context) => FavoriteScreen(),
+      '/profile': (context) => ProfileScreen()
     },
   ));
 }
