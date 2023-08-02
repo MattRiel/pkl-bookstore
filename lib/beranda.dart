@@ -23,6 +23,7 @@ class Beranda extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 24.0),
           child: Container(
+            width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
                 // search box
@@ -114,110 +115,70 @@ class Beranda extends StatelessWidget {
   Widget buildKategoriSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Kategori",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          // second row
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all((Radius.circular(12))),
-                      color: Colors.grey[200],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text("Buku Ajar"),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all((Radius.circular(12))),
-                      color: Colors.grey[200],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text("Proceeding"),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all((Radius.circular(12))),
-                      color: Colors.grey[200],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text("Journal"),
-                    ),
-                  ),
-                ),
-              ],
+      child: Container(
+        height: 128,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Kategori",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             ),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          // tombol kategori
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all((Radius.circular(12))),
-                      color: Colors.grey[200],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text("Buku Panduan"),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all((Radius.circular(12))),
-                      color: Colors.grey[200],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text("Buku Pedoman"),
-                    ),
-                  ),
-                ),
-              ],
+            SizedBox(height: 12),
+            // kategori row 1
+            Container(
+              height: 40,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buildKategoriButton('Buku Ajar', () {}),
+                  SizedBox(width: 12),
+                  buildKategoriButton('Proceeding', () {}),
+                  SizedBox(width: 12),
+                  buildKategoriButton('Journal', () {}),
+                ],
+              ),
             ),
+            SizedBox(height: 12),
+            // kategori row 2
+            Container(
+              height: 40,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buildKategoriButton('Buku Panduan', () {}),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  buildKategoriButton('Buku Pedoman', () {}),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildKategoriButton(String text, VoidCallback onPressed) {
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
-        ],
+          backgroundColor: Color(0xFFF0F0F0),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 14,
+            color: Color(0xFF282828),
+          ),
+        ),
       ),
     );
   }
@@ -309,7 +270,7 @@ class Beranda extends StatelessWidget {
         Text(
           "Penulis Paling Dicari",
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -319,7 +280,6 @@ class Beranda extends StatelessWidget {
         Container(
           height: 138,
           color: Colors.red,
-          width: MediaQuery.of(context).size.width,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 5,
@@ -337,16 +297,24 @@ class Beranda extends StatelessWidget {
                           height: 76,
                           width: 76,
                           child: CircleAvatar(
+                            backgroundColor: Colors.black,
                             child: Icon(
                               Icons.person,
                               size: 50,
+                              color: Colors.white,
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 6,
                         ),
-                        Text("Penulis + $index")
+                        Text(
+                          "Penulis + $index",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                          ),
+                        )
                       ],
                     ),
                   ),
