@@ -56,7 +56,7 @@ class FavoriteScreen extends StatelessWidget {
                               color: Color(0xFF5E5E5E)),
                         ),
                         Text(
-                          'whislist yang ada pada detail buku',
+                          'wishlist yang ada pada detail buku',
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 12,
@@ -67,7 +67,7 @@ class FavoriteScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              primary: Color(0xFF344054),
+                              backgroundColor: Color(0xFF344054),
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(12)))),
@@ -104,8 +104,13 @@ class FavoriteScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          elevation: 4,
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.grey[200],
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
@@ -113,71 +118,76 @@ class FavoriteScreen extends StatelessWidget {
                 icon: Icon(Icons.favorite), label: "Favorit"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.chrome_reader_mode_outlined), label: "Bacaan"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
-          ]),
-    );
-  }
-
-  Widget favoriteTopBar(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(
-              Icons.menu_outlined,
-              color: Colors.black,
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profil",
             ),
-            TextButton(
-                onPressed: () {
-                  print("Beranda pressed");
-                },
-                child: Text(
-                  "Favorit",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                )),
-            CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Icon(
-                Icons.grid_view_outlined,
-                color: Colors.black,
-                size: 30,
-              ),
-            )
           ],
         ),
       ),
     );
   }
+}
 
-  Widget favoriteSearch(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 24),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            color: Colors.grey[200]),
-        child: TextField(
-          // controller: searchController,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: "Searching",
-            hintStyle: TextStyle(color: Colors.grey[500]),
-            prefixIcon: IconButton(
+Widget favoriteTopBar(BuildContext context) {
+  return Container(
+    color: Colors.white,
+    width: MediaQuery.of(context).size.width,
+    child: Padding(
+      padding: const EdgeInsets.only(left: 24, right: 24),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(
+            Icons.menu_outlined,
+            color: Colors.black,
+          ),
+          TextButton(
               onPressed: () {
-                print("Search button pressed");
+                print("Beranda pressed");
               },
-              icon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
+              child: Text(
+                "Favorit",
+                style: TextStyle(fontSize: 20, color: Colors.black),
+              )),
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Icon(
+              Icons.grid_view_outlined,
+              color: Colors.black,
+              size: 30,
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+Widget favoriteSearch(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.only(right: 24),
+    child: Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+          color: Colors.grey[200]),
+      child: TextField(
+        // controller: searchController,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: "Searching",
+          hintStyle: TextStyle(color: Colors.grey[500]),
+          prefixIcon: IconButton(
+            onPressed: () {
+              print("Search button pressed");
+            },
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
             ),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }
