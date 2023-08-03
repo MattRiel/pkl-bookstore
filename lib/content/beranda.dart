@@ -101,6 +101,7 @@ class _BerandaState extends State<Beranda> {
   }
 
   Widget buildTopBarSection(BuildContext context) {
+    final profileImage = userDataList[userDataList.length - 1];
     return Container(
       color: Colors.white,
       width: MediaQuery.of(context).size.width,
@@ -123,10 +124,8 @@ class _BerandaState extends State<Beranda> {
                 )),
             CircleAvatar(
               backgroundColor: Colors.white,
-              child: Icon(
-                Icons.person,
-                color: Colors.black,
-              ),
+              backgroundImage:
+                  NetworkImage(profileImage['picture']['thumbnail']),
             )
           ],
         ),
