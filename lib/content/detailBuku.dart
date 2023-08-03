@@ -152,6 +152,7 @@ class DetailBuku extends StatelessWidget {
                           fontSize: 12,
                           color: Color(0xFF8B8B8B),
                         ),
+                        textAlign: TextAlign.justify,
                       ),
                       SizedBox(
                         height: 11,

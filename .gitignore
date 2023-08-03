@@ -29,3 +29,4 @@ google-services.json
 # Android Profiling
 *.hprof
 /lib/backend/config.dart
+/.dart_tool/
