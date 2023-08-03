@@ -6,8 +6,9 @@ Future<List<Map<String, dynamic>>> fetchUserData() async {
 
   try {
     userDataList.clear();
-    for (int i = 0; i < 7; i++) {
-      final response = await get(Uri.parse('https://randomuser.me/api'));
+    for (int i = 1; i <= 10; i++) {
+      final response =
+          await get(Uri.parse('https://randomuser.me/api?inc=name,picture'));
 
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body);
