@@ -1,9 +1,31 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:bookstore/backend/penulis_service.dart';
 
-class Beranda extends StatelessWidget {
+class Beranda extends StatefulWidget {
   const Beranda({super.key});
+
+  @override
+  State<Beranda> createState() => _BerandaState();
+}
+
+class _BerandaState extends State<Beranda> {
+  List<Map<String, dynamic>> userDataList = [];
+
+  // ambil data dari penulis_services.dart
+  void loadData() async {
+    List<Map<String, dynamic>> data = await fetchUserData();
+    setState(() {
+      userDataList = data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -277,55 +299,56 @@ class Beranda extends StatelessWidget {
         SizedBox(
           height: 12,
         ),
-        Container(
-          height: 138,
-          color: Colors.red,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return Row(
-                children: [
-                  Container(
-                    color: Colors.blue,
-                    height: 102,
-                    width: 77,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+        // Foto Penulis
+        userDataList.isEmpty
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Container(
+                height: 138,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: userDataList.length,
+                  itemBuilder: (context, index) {
+                    final userData = userDataList[index];
+                    return Row(
                       children: [
                         Container(
-                          height: 76,
-                          width: 76,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.black,
-                            child: Icon(
-                              Icons.person,
-                              size: 50,
-                              color: Colors.white,
-                            ),
+                          height: 102,
+                          width: 77,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 76,
+                                width: 76,
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                    userData['picture']['thumbnail'],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Text(
+                                '${userData['name']['first']}',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: Color(0xFF282828)),
+                              )
+                            ],
                           ),
                         ),
                         SizedBox(
-                          height: 6,
-                        ),
-                        Text(
-                          "Penulis + $index",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                          ),
+                          width: 20,
                         )
                       ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 30,
-                  )
-                ],
-              );
-            },
-          ),
-        ),
+                    );
+                  },
+                ),
+              ),
       ],
     );
   }

@@ -22,7 +22,7 @@ void main() {
   final BookService bookService = BookService(googleBooksApiKey);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/read',
+    initialRoute: '/beranda',
     routes: {
       '/beranda': (context) => Beranda(),
       '/home': (context) => HomeScreen(bookService: bookService),
