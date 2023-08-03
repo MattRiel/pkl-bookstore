@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:bookstore/content/detailBuku.dart';
 import 'package:bookstore/unused/bookdetails.dart';
 import 'package:bookstore/content/favoriteScreen.dart';
