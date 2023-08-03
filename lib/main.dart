@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bookstore/content/detailBuku.dart';
+import 'package:bookstore/content/readScreen.dart';
 import 'package:bookstore/unused/bookdetails.dart';
 import 'package:bookstore/content/favoriteScreen.dart';
 import 'package:bookstore/frontpages/login.dart';
@@ -21,7 +22,7 @@ void main() {
   final BookService bookService = BookService(googleBooksApiKey);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/detail_buku',
+    initialRoute: '/read',
     routes: {
       '/beranda': (context) => Beranda(),
       '/home': (context) => HomeScreen(bookService: bookService),
@@ -31,6 +32,7 @@ void main() {
       '/favorite': (context) => FavoriteScreen(),
       '/profile': (context) => ProfileScreen(),
       '/detail_buku': (context) => DetailBuku(),
+      '/read': (context) => ReadScreen(),
     },
   ));
 }
