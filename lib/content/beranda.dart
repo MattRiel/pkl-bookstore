@@ -124,10 +124,14 @@ class _BerandaState extends State<Beranda> {
                   "Beranda",
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 )),
-            CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Icon(Icons.person),
-            )
+            userDataList.isEmpty
+                ? CircularProgressIndicator()
+                : CircleAvatar(
+                    backgroundColor: Colors.white,
+                    backgroundImage: NetworkImage(
+                        userDataList[userDataList.length - 1]['picture']
+                            ['thumbnail']),
+                  )
           ],
         ),
       ),
