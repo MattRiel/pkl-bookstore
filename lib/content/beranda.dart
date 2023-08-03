@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:bookstore/backend/penulis_service.dart';
+import 'package:bookstore/backend/buku_service.dart';
 
 class Beranda extends StatefulWidget {
   const Beranda({super.key});
@@ -12,12 +13,15 @@ class Beranda extends StatefulWidget {
 
 class _BerandaState extends State<Beranda> {
   List<Map<String, dynamic>> userDataList = [];
+  List<Map<String, dynamic>> booksList = [];
 
   // ambil data dari penulis_services.dart
   void loadData() async {
-    List<Map<String, dynamic>> data = await fetchUserData();
+    List<Map<String, dynamic>> userData = await fetchUserData();
+    List<Map<String, dynamic>> bookData = await fetchBooks();
     setState(() {
-      userDataList = data;
+      userDataList = userData;
+      booksList = bookData;
     });
   }
 
@@ -44,7 +48,7 @@ class _BerandaState extends State<Beranda> {
         scrollDirection: Axis.vertical,
         child: Padding(
           padding: const EdgeInsets.only(left: 24.0),
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
@@ -101,7 +105,7 @@ class _BerandaState extends State<Beranda> {
   }
 
   Widget buildTopBarSection(BuildContext context) {
-    final profileImage = userDataList[userDataList.length - 1];
+    // final profileImage = userDataList[userDataList.length - 1];
     return Container(
       color: Colors.white,
       width: MediaQuery.of(context).size.width,
@@ -115,17 +119,14 @@ class _BerandaState extends State<Beranda> {
               color: Colors.black,
             ),
             TextButton(
-                onPressed: () {
-                  print("Beranda pressed");
-                },
+                onPressed: () {},
                 child: Text(
                   "Beranda",
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 )),
             CircleAvatar(
               backgroundColor: Colors.white,
-              backgroundImage:
-                  NetworkImage(profileImage['picture']['thumbnail']),
+              child: Icon(Icons.person),
             )
           ],
         ),
@@ -136,7 +137,7 @@ class _BerandaState extends State<Beranda> {
   Widget buildKategoriSection(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 24.0),
-      child: Container(
+      child: SizedBox(
         height: 128,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,7 +148,7 @@ class _BerandaState extends State<Beranda> {
             ),
             SizedBox(height: 12),
             // kategori row 1
-            Container(
+            SizedBox(
               height: 40,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -162,7 +163,7 @@ class _BerandaState extends State<Beranda> {
             ),
             SizedBox(height: 12),
             // kategori row 2
-            Container(
+            SizedBox(
               height: 40,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -218,9 +219,7 @@ class _BerandaState extends State<Beranda> {
             hintText: "Searching",
             hintStyle: TextStyle(color: Colors.grey[500]),
             prefixIcon: IconButton(
-              onPressed: () {
-                print("Search button pressed");
-              },
+              onPressed: () {},
               icon: Icon(
                 Icons.search,
                 color: Colors.black,
@@ -245,7 +244,7 @@ class _BerandaState extends State<Beranda> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            LihatSemuaButton(context),
+            lihatSemuaButton(context),
           ],
         ),
         SizedBox(
@@ -270,7 +269,7 @@ class _BerandaState extends State<Beranda> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            LihatSemuaButton(context),
+            lihatSemuaButton(context),
           ],
         ),
         SizedBox(
@@ -303,7 +302,7 @@ class _BerandaState extends State<Beranda> {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : Container(
+            : SizedBox(
                 height: 138,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -312,13 +311,13 @@ class _BerandaState extends State<Beranda> {
                     final userData = userDataList[index];
                     return Row(
                       children: [
-                        Container(
+                        SizedBox(
                           height: 102,
                           width: 77,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 76,
                                 width: 76,
                                 child: CircleAvatar(
@@ -334,8 +333,10 @@ class _BerandaState extends State<Beranda> {
                                 '${userData['name']['first']}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     color: Color(0xFF282828)),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                               )
                             ],
                           ),
@@ -365,7 +366,7 @@ class _BerandaState extends State<Beranda> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            LihatSemuaButton(context),
+            lihatSemuaButton(context),
           ],
         ),
         SizedBox(
@@ -389,7 +390,7 @@ class _BerandaState extends State<Beranda> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            LihatSemuaButton(context),
+            lihatSemuaButton(context),
           ],
         ),
         SizedBox(
@@ -401,53 +402,60 @@ class _BerandaState extends State<Beranda> {
   }
 
   Widget booksHorizontalScroll(BuildContext context) {
-    return Container(
-      color: Colors.grey,
-      height: 238,
-      width: MediaQuery.of(context).size.width,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 4,
-        itemBuilder: (context, index) {
-          return Row(
-            children: [
-              Container(
-                color: Colors.yellow[400],
-                height: 238,
-                width: 152,
-                child: Column(
+    return booksList.isEmpty
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : SizedBox(
+            height: 238,
+            width: MediaQuery.of(context).size.width,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: booksList.length,
+              itemBuilder: (context, index) {
+                final book = booksList[index];
+                return Row(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: Colors.grey,
-                        image: DecorationImage(
-                          image: AssetImage('figma/book_icon.png'),
-                          fit: BoxFit.cover,
-                        ),
+                    SizedBox(
+                      height: 238,
+                      width: 152,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(book['imageUrl']),
+                                  fit: BoxFit.cover,
+                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              height: 206,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            book['title'],
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          )
+                        ],
                       ),
-                      height: 206,
                     ),
                     SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Buku + $index",
+                      width: 20,
                     )
                   ],
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              )
-            ],
+                );
+              },
+            ),
           );
-        },
-      ),
-    );
   }
 
-  Widget LihatSemuaButton(BuildContext context) {
+  Widget lihatSemuaButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 24),
       child: Text(
