@@ -51,7 +51,7 @@ class ReadScreen extends StatelessWidget {
   }
 
   Widget readTopBar(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24),
@@ -65,26 +65,24 @@ class ReadScreen extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.black,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.more_horiz,
-                      color: Colors.black,
-                    ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.more_horiz,
+                    color: Colors.black,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

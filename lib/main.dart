@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:bookstore/content/detailBuku.dart';
 import 'package:bookstore/content/readScreen.dart';
@@ -23,8 +23,9 @@ void main() {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/beranda',
+    initialRoute: '/start',
     routes: {
+      '/start': (context) => MainScreen(),
       '/beranda': (context) => Beranda(),
       '/home': (context) => HomeScreen(bookService: bookService),
       '/details': (context) => BookDetailScreen(),
@@ -36,4 +37,60 @@ void main() {
       '/read': (context) => ReadScreen(),
     },
   ));
+}
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int currentIndexVar = 0;
+
+  final screens = [
+    Beranda(),
+    FavoriteScreen(),
+    DetailBuku(),
+    ProfileScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // gunakan IndexedStack untuk preserve kondisi screen ketika dialihkan
+      body: IndexedStack(
+        index: currentIndexVar,
+        children: screens,
+      ),
+      bottomNavigationBar: ClipRRect(
+        clipBehavior: Clip.none,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+        child: BottomNavigationBar(
+            backgroundColor: Colors.grey[700],
+            elevation: 4,
+            type: BottomNavigationBarType.fixed,
+            currentIndex: currentIndexVar,
+            onTap: (index) {
+              setState(() {
+                currentIndexVar = index;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite), label: "Favorit"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.chrome_reader_mode_outlined),
+                  label: "Bacaan"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), label: "Profil"),
+            ]),
+      ),
+    );
+  }
 }

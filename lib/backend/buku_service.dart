@@ -8,7 +8,7 @@ Future<List<Map<String, dynamic>>> fetchBooks() async {
   try {
     final apiKey = googleBooksApiKey;
     final response = await get(Uri.parse(
-        'https://www.googleapis.com/books/v1/volumes?q=computer&maxResults=10&key=$apiKey'));
+        'https://www.googleapis.com/books/v1/volumes?q=computer&maxResults=10&key=$apiKey&orderBy=newest'));
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);

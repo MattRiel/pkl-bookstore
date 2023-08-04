@@ -30,7 +30,7 @@ class FavoriteScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 clipBehavior: Clip.none,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 327,
                     width: 334,
                     child: Column(
@@ -104,27 +104,6 @@ class FavoriteScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(12),
-          topRight: Radius.circular(12),
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.grey[200],
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: "Favorit"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.chrome_reader_mode_outlined), label: "Bacaan"),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profil",
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -143,9 +122,7 @@ Widget favoriteTopBar(BuildContext context) {
             color: Colors.black,
           ),
           TextButton(
-              onPressed: () {
-                print("Beranda pressed");
-              },
+              onPressed: () {},
               child: Text(
                 "Favorit",
                 style: TextStyle(fontSize: 20, color: Colors.black),
@@ -178,9 +155,7 @@ Widget favoriteSearch(BuildContext context) {
           hintText: "Searching",
           hintStyle: TextStyle(color: Colors.grey[500]),
           prefixIcon: IconButton(
-            onPressed: () {
-              print("Search button pressed");
-            },
+            onPressed: () {},
             icon: Icon(
               Icons.search,
               color: Colors.black,

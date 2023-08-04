@@ -27,13 +27,13 @@ class ProfileScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 47,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CircleAvatar(
-                            child: Container(
+                            child: SizedBox(
                               height: 47,
                               width: 47,
                               child: Icon(Icons.person),
@@ -42,25 +42,21 @@ class ProfileScreen extends StatelessWidget {
                           SizedBox(
                             width: 24,
                           ),
-                          Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Ariel Matius Surbakti',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  'placeholder@students.usu.ac.id',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Ariel Matius Surbakti',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                'placeholder@students.usu.ac.id',
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           )
                         ],
                       ),
@@ -82,27 +78,6 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(12),
-          topRight: Radius.circular(12),
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.grey[200],
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: "Favorit"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.chrome_reader_mode_outlined), label: "Bacaan"),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profil",
-            ),
-          ],
-        ),
-      ),
     );
   }
 
@@ -120,9 +95,7 @@ class ProfileScreen extends StatelessWidget {
               color: Colors.black,
             ),
             TextButton(
-                onPressed: () {
-                  print("Profil pressed");
-                },
+                onPressed: () {},
                 child: Text(
                   "Profil",
                   style: TextStyle(fontSize: 20, color: Colors.black),

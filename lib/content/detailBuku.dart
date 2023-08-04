@@ -16,11 +16,11 @@ class DetailBuku extends StatelessWidget {
           detailBukuTopBar(context),
         ],
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 370,
               width: 236,
               child: Padding(
@@ -39,7 +39,7 @@ class DetailBuku extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
+                    SizedBox(
                       height: 44,
                       child: Column(
                         children: [
@@ -65,53 +65,51 @@ class DetailBuku extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'Bahasa',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              'Bahasa',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: Colors.white,
                               ),
-                              Text(
-                                'Bahasa Indonesia',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                ),
+                            ),
+                            Text(
+                              'Bahasa Indonesia',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                                color: Colors.white,
                               ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'Halaman',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              'Halaman',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: Colors.white,
                               ),
-                              Text(
-                                '150 Halaman',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                ),
+                            ),
+                            Text(
+                              '150 Halaman',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                                color: Colors.white,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     )
                   ],
                 ),
@@ -131,7 +129,7 @@ class DetailBuku extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
+                  padding: const EdgeInsets.fromLTRB(24, 40, 24, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -157,7 +155,7 @@ class DetailBuku extends StatelessWidget {
                       SizedBox(
                         height: 11,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(

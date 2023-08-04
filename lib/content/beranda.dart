@@ -12,10 +12,17 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
+  // Kategori
+  bool terbaruShow = true;
+  bool penulisShow = true;
+  bool ajarShow = true;
+  bool journalShow = true;
+  bool proceedingShow = true;
+
+  // Fetch API
   List<Map<String, dynamic>> userDataList = [];
   List<Map<String, dynamic>> booksList = [];
 
-  // ambil data dari penulis_services.dart
   void loadData() async {
     List<Map<String, dynamic>> userData = await fetchUserData();
     List<Map<String, dynamic>> bookData = await fetchBooks();
@@ -24,6 +31,8 @@ class _BerandaState extends State<Beranda> {
       booksList = bookData;
     });
   }
+
+  // Bottom NavBar
 
   @override
   void initState() {
@@ -90,17 +99,6 @@ class _BerandaState extends State<Beranda> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          elevation: 4,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: "Favorit"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.chrome_reader_mode_outlined), label: "Bacaan"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
-          ]),
     );
   }
 
@@ -119,19 +117,21 @@ class _BerandaState extends State<Beranda> {
               color: Colors.black,
             ),
             TextButton(
-                onPressed: () {},
-                child: Text(
-                  "Beranda",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                )),
+              onPressed: () {},
+              child: Text(
+                "Beranda",
+                style: TextStyle(fontSize: 20, color: Colors.black),
+              ),
+            ),
             userDataList.isEmpty
                 ? CircularProgressIndicator()
                 : CircleAvatar(
                     backgroundColor: Colors.white,
                     backgroundImage: NetworkImage(
-                        userDataList[userDataList.length - 1]['picture']
-                            ['thumbnail']),
-                  )
+                      userDataList[userDataList.length - 1]['picture']
+                          ['thumbnail'],
+                    ),
+                  ),
           ],
         ),
       ),
