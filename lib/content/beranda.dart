@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:bookstore/backend/penulis_service.dart';
 import 'package:bookstore/backend/buku_service.dart';
+import 'detailBuku.dart';
 
 class Beranda extends StatefulWidget {
   const Beranda({super.key});
@@ -21,14 +22,23 @@ class _BerandaState extends State<Beranda> {
 
   // Fetch API
   List<Map<String, dynamic>> userDataList = [];
-  List<Map<String, dynamic>> booksList = [];
+  List<Map<String, dynamic>> latestBooks = [];
+  List<Map<String, dynamic>> generalBooks = [];
+  List<Map<String, dynamic>> journals = [];
+  List<Map<String, dynamic>> proceedings = [];
 
   void loadData() async {
     List<Map<String, dynamic>> userData = await fetchUserData();
-    List<Map<String, dynamic>> bookData = await fetchBooks();
+    List<Map<String, dynamic>> latestBookData = await fetchLatestBooks();
+    List<Map<String, dynamic>> generalBookData = await fetchGeneralBooks();
+    List<Map<String, dynamic>> journalBookData = await fetchJournals();
+    List<Map<String, dynamic>> proceedingBookData = await fetchProceedings();
     setState(() {
       userDataList = userData;
-      booksList = bookData;
+      latestBooks = latestBookData;
+      generalBooks = generalBookData;
+      journals = journalBookData;
+      proceedings = proceedingBookData;
     });
   }
 
@@ -117,7 +127,9 @@ class _BerandaState extends State<Beranda> {
               color: Colors.black,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                loadData();
+              },
               child: Text(
                 "Beranda",
                 style: TextStyle(fontSize: 20, color: Colors.black),
@@ -255,7 +267,7 @@ class _BerandaState extends State<Beranda> {
           height: 12,
         ),
         // buku terbaru
-        booksHorizontalScroll(context),
+        booksHorizontalScroll(context, latestBooks),
       ],
     );
   }
@@ -279,7 +291,7 @@ class _BerandaState extends State<Beranda> {
         SizedBox(
           height: 12,
         ),
-        booksHorizontalScroll(context),
+        booksHorizontalScroll(context, generalBooks),
         SizedBox(
           height: 40,
         )
@@ -376,7 +388,7 @@ class _BerandaState extends State<Beranda> {
         SizedBox(
           height: 12,
         ),
-        booksHorizontalScroll(context),
+        booksHorizontalScroll(context, journals),
       ],
     );
   }
@@ -400,13 +412,14 @@ class _BerandaState extends State<Beranda> {
         SizedBox(
           height: 12,
         ),
-        booksHorizontalScroll(context),
+        booksHorizontalScroll(context, proceedings),
       ],
     );
   }
 
-  Widget booksHorizontalScroll(BuildContext context) {
-    return booksList.isEmpty
+  Widget booksHorizontalScroll(
+      BuildContext context, List<Map<String, dynamic>> books) {
+    return latestBooks.isEmpty
         ? Center(
             child: CircularProgressIndicator(),
           )
@@ -415,44 +428,54 @@ class _BerandaState extends State<Beranda> {
             width: MediaQuery.of(context).size.width,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: booksList.length,
+              itemCount: latestBooks.length,
               itemBuilder: (context, index) {
-                final book = booksList[index];
-                return Row(
-                  children: [
-                    SizedBox(
-                      height: 238,
-                      width: 152,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(book['imageUrl']),
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              height: 206,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            book['title'],
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          )
-                        ],
+                final book = books[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailBuku(),
                       ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    )
-                  ],
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 238,
+                        width: 152,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(book['imageUrl']),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                ),
+                                height: 206,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              book['title'],
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      )
+                    ],
+                  ),
                 );
               },
             ),

@@ -7,7 +7,7 @@ import 'package:bookstore/content/favoriteScreen.dart';
 import 'package:bookstore/frontpages/login.dart';
 import 'package:bookstore/content/profileScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:bookstore/backend/services.dart';
+import 'package:bookstore/unused/services.dart';
 import 'package:bookstore/unused/homescreen.dart';
 import 'package:bookstore/backend/config.dart';
 import 'content/beranda.dart';
@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
   final screens = [
     Beranda(),
     FavoriteScreen(),
-    DetailBuku(),
+    ReadScreen(),
     ProfileScreen(),
   ];
 
@@ -65,13 +65,14 @@ class _MainScreenState extends State<MainScreen> {
         children: screens,
       ),
       bottomNavigationBar: ClipRRect(
-        clipBehavior: Clip.none,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(12),
           topRight: Radius.circular(12),
         ),
         child: BottomNavigationBar(
-            backgroundColor: Colors.grey[700],
+            unselectedItemColor: Colors.white,
+            selectedItemColor: Color(0xFF1D5755),
+            backgroundColor: Colors.green[500],
             elevation: 4,
             type: BottomNavigationBarType.fixed,
             currentIndex: currentIndexVar,
@@ -81,7 +82,10 @@ class _MainScreenState extends State<MainScreen> {
               });
             },
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Beranda",
+              ),
               BottomNavigationBarItem(
                   icon: Icon(Icons.favorite), label: "Favorit"),
               BottomNavigationBarItem(

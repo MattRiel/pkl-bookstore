@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'config.dart';
 
-Future<List<Map<String, dynamic>>> fetchBooks() async {
-  List<Map<String, dynamic>> computerBooksList = [];
+Future<List<Map<String, dynamic>>> fetchBooksByQuery(String query) async {
+  List<Map<String, dynamic>> booksList = [];
 
   try {
     final apiKey = googleBooksApiKey;
     final response = await get(Uri.parse(
-        'https://www.googleapis.com/books/v1/volumes?q=computer&maxResults=10&key=$apiKey&orderBy=newest'));
+        'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=10&key=$apiKey'));
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
@@ -16,8 +16,9 @@ Future<List<Map<String, dynamic>>> fetchBooks() async {
         for (var item in jsonData['items']) {
           final volumeInfo = item['volumeInfo'];
           final title = volumeInfo['title'];
-          final imageUrl = volumeInfo['imageLinks']?['thumbnail'] ?? 'No Image';
-          computerBooksList.add({'title': title, 'imageUrl': imageUrl});
+          final imageUrl =
+              volumeInfo['imageLinks']?['thumbnail'] ?? 'figma/book_icon.png';
+          booksList.add({'title': title, 'imageUrl': imageUrl});
         }
       } else {
         print('Format response tidak valid');
@@ -29,5 +30,21 @@ Future<List<Map<String, dynamic>>> fetchBooks() async {
     print('Terjadi error sebagai berikut: $error');
   }
 
-  return computerBooksList;
+  return booksList;
+}
+
+Future<List<Map<String, dynamic>>> fetchLatestBooks() async {
+  return fetchBooksByQuery('latest computer');
+}
+
+Future<List<Map<String, dynamic>>> fetchGeneralBooks() async {
+  return fetchBooksByQuery('computer science');
+}
+
+Future<List<Map<String, dynamic>>> fetchJournals() async {
+  return fetchBooksByQuery('computer journal');
+}
+
+Future<List<Map<String, dynamic>>> fetchProceedings() async {
+  return fetchBooksByQuery('computer proceeding');
 }

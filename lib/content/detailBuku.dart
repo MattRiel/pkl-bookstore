@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:bookstore/unused/book.dart';
 
 class DetailBuku extends StatelessWidget {
   const DetailBuku({super.key});
@@ -129,7 +130,7 @@ class DetailBuku extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 40, 24, 0),
+                  padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -153,7 +154,7 @@ class DetailBuku extends StatelessWidget {
                         textAlign: TextAlign.justify,
                       ),
                       SizedBox(
-                        height: 11,
+                        height: 12,
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
@@ -195,8 +196,11 @@ class DetailBuku extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              Icons.arrow_back_ios_new,
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios_new),
               color: Colors.white,
             ),
             Icon(
