@@ -1,20 +1,18 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:bookstore/backend/config.dart';
-import 'package:bookstore/content/detailBuku.dart';
-import 'package:bookstore/content/favoriteScreen.dart';
-import 'package:bookstore/content/profileScreen.dart';
-import 'package:bookstore/content/readScreen.dart';
 import 'package:bookstore/frontpages/login.dart';
-import 'package:bookstore/src/utils/theme/theme.dart';
+import 'package:bookstore/src/features/book_detail/detailBuku.dart';
+import 'package:bookstore/src/features/book_read/readScreen.dart';
+import 'package:bookstore/src/features/favorite/favoriteScreen.dart';
+import 'package:bookstore/src/features/profile/profileScreen.dart';
 import 'package:bookstore/unused/bookdetails.dart';
 import 'package:bookstore/unused/homescreen.dart';
 import 'package:bookstore/unused/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'content/beranda.dart';
 import 'frontpages/spscreen1.dart';
+import 'src/api/config.dart';
+import 'src/features/home/view/beranda.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -24,9 +22,9 @@ void main() {
   final BookService bookService = BookService(googleBooksApiKey);
 
   runApp(MaterialApp(
-    theme: TAppTheme.lightTheme,
+    /*theme: TAppTheme.lightTheme,
     darkTheme: TAppTheme.darkTheme,
-    themeMode: ThemeMode.system,
+    themeMode: ThemeMode.system,*/
     debugShowCheckedModeBanner: false,
     initialRoute: '/start',
     routes: {

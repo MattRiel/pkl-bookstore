@@ -138,4 +138,4 @@ app.*.symbols
 !.vscode/settings.json!/lib/backend/config.dart
 
 # Custom Rules
-/lib/backend/config.dart
+/lib/src/api/config.dart

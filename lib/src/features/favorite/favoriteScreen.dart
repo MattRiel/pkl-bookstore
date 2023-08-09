@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:bookstore/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -35,15 +36,11 @@ class FavoriteScreen extends StatelessWidget {
                     width: 334,
                     child: Column(
                       children: [
-                        Text(
-                          'Simpan daftar buku',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
-                        ),
-                        Text(
-                          'untuk kamu baca',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
+                        Text.rich(
+                          TextSpan(
+                              text: tFavoriteBody1,
+                              style: Theme.of(context).textTheme.headlineSmall),
+                          textAlign: TextAlign.center,
                         ),
                         SizedBox(
                           height: 8,

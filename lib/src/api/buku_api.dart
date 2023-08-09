@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:http/http.dart';
+
 import 'config.dart';
 
 Future<List<Map<String, dynamic>>> fetchBooksByQuery(String query) async {
@@ -9,6 +11,7 @@ Future<List<Map<String, dynamic>>> fetchBooksByQuery(String query) async {
     final apiKey = googleBooksApiKey;
     final response = await get(Uri.parse(
         'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=10&key=$apiKey'));
+    print('Raw Response: ${response.body}');
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
