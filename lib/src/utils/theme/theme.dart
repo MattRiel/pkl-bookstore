@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projectlogin/src/utils/theme/widget_theme/elevated_button_theme.dart';
-import 'package:projectlogin/src/utils/theme/widget_theme/outlined_button_theme.dart';
-import 'package:projectlogin/src/utils/theme/widget_theme/text_theme.dart';
+
+import 'widget_theme/elevated_button_theme.dart';
+import 'widget_theme/outlined_button_theme.dart';
+import 'widget_theme/text_theme.dart';
 
 class TAppTheme {
   // private constructor

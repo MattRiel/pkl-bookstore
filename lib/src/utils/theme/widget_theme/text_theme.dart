@@ -10,6 +10,10 @@ class TTextTheme {
         fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
+      headline4: GoogleFonts.inter(
+        fontSize: 18,
+        color: Colors.grey[600],
+      ),
       subtitle2: GoogleFonts.poppins(
         color: Colors.black54,
         fontSize: 24,

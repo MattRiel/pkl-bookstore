@@ -24,3 +24,19 @@ const String tOnBoardingCounter3 = '3/3';
 // welcome screen
 const String tWelcomeTitle = 'Selamat Datang';
 const String tWelcomeSubtitle = 'Silahkan Masuk';
+
+// beranda
+const String tBerandaTitle = 'Beranda';
+const String tSearchTitle = 'Searching';
+const String tKategoriTitle = 'Kategori';
+const String tKategori1 = 'Buku Ajar';
+const String tKategori2 = 'Proceeding';
+const String tKategori3 = 'Journal';
+const String tKategori4 = 'Buku Panduan';
+const String tKategori5 = 'Buku Pedoman';
+const String tBukuTerbaruTitle = 'Buku Terbaru';
+const String tLihatSemuaTitle = 'Lihat semua';
+const String tPenulisDicariTitle = 'Penulis Paling Dicari';
+const String tBukuAjarTitle = 'Buku Ajar';
+const String tJournalTitle = 'Journal';
+const String tProceedingTitle = 'Proceeding';

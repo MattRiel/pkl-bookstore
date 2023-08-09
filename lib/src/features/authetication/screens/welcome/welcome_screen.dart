@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:projectlogin/src/constants/colors.dart';
-import 'package:projectlogin/src/constants/image_strings.dart';
-import 'package:projectlogin/src/constants/text_strings.dart';
-
+import '../../../../constants/colors.dart';
+import '../../../../constants/image_strings.dart';
 import '../../../../constants/sizes.dart';
+import '../../../../constants/text_strings.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

@@ -93,7 +93,7 @@ class FavoriteScreen extends StatelessWidget {
                       width: 203,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("figma/newFavIcon.png"),
+                            image: AssetImage("assets/logo/newFavIcon.png"),
                             fit: BoxFit.cover),
                       ),
                     ),

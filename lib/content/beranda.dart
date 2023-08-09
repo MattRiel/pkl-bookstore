@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:flutter/material.dart';
-import 'package:bookstore/backend/penulis_service.dart';
 import 'package:bookstore/backend/buku_service.dart';
+import 'package:bookstore/backend/penulis_service.dart';
+import 'package:bookstore/src/constants/text_strings.dart';
+import 'package:flutter/material.dart';
+
 import 'detailBuku.dart';
 
 class Beranda extends StatefulWidget {
@@ -131,7 +133,7 @@ class _BerandaState extends State<Beranda> {
                 loadData();
               },
               child: Text(
-                "Beranda",
+                tBerandaTitle,
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
             ),
@@ -486,8 +488,8 @@ class _BerandaState extends State<Beranda> {
     return Padding(
       padding: const EdgeInsets.only(right: 24),
       child: Text(
-        "Lihat semua",
-        style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+        tLihatSemuaTitle,
+        style: Theme.of(context).textTheme.headline4,
       ),
     );
   }
