@@ -1,16 +1,13 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:bookstore/src/features/home/controller/beranda_controller.dart';
+import 'package:bookstore/src/features/home/view/books/books_section.dart';
+import 'package:bookstore/src/features/home/view/topbar/topbar_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'author/author_widget.dart';
-import 'books/buku_ajar_widget.dart';
-import 'books/buku_terbaru_widget.dart';
-import 'books/journal_widget.dart';
-import 'books/proceeding_widget.dart';
+import 'author/dashboardPenulis.dart';
 import 'category/dashboard_category_section.dart';
 import 'search/search_widget.dart';
-import 'topbar/topbar_widget.dart';
 
 class Beranda extends StatefulWidget {
   const Beranda({super.key});
@@ -23,19 +20,12 @@ class _BerandaState extends State<Beranda> {
   final BerandaController _controller = BerandaController();
 
   @override
-  void initState() {
-    super.initState();
-    _controller.loadData();
-    _controller.printDataStatus();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        actions: [topBarWidget(context)],
+        actions: [TopBarWidget()],
         backgroundColor: Colors.white,
       ),
       // main
@@ -51,18 +41,31 @@ class _BerandaState extends State<Beranda> {
                 SizedBox(height: 40),
                 dashboardCategory(context),
                 SizedBox(height: 40),
-                dashboardTerbaru(context, _controller),
-                SizedBox(height: 40),
-                dashboardPenulis(context),
-                SizedBox(height: 40),
-                dashboardBukuAjar(context, _controller),
-                dashboardBukuAjar(context, _controller),
-                dashboardBukuAjar(context, _controller),
-                // area journal
-                dashboardJournal(context, _controller),
-                SizedBox(height: 40),
-                dashboardProceeding(context, _controller),
-                SizedBox(height: 40),
+                FutureBuilder<void>(
+                  future: _controller.loadData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      return Column(
+                        children: [
+                          bookSection(context, _controller,
+                              _controller.model.latestBooks, 'Buku Terbaru'),
+                          penulisWidget(context, _controller),
+                          SizedBox(height: 40),
+                          bookSection(context, _controller,
+                              _controller.model.generalBooks, 'Buku Ajar'),
+                          bookSection(context, _controller,
+                              _controller.model.journals, 'Journals'),
+                          bookSection(context, _controller,
+                              _controller.model.proceedings, 'Proceeding'),
+                        ],
+                      );
+                    }
+                  },
+                ),
               ],
             ),
           ),

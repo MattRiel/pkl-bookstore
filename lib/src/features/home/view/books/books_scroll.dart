@@ -1,13 +1,12 @@
-import 'package:bookstore/src/features/home/controller/beranda_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../book_detail/detailBuku.dart';
 
-Widget booksHorizontalScroll(BuildContext context,
-    List<Map<String, dynamic>> books, BerandaController controller) {
-  var latestBook = controller.model.latestBooks;
-  return latestBook.isEmpty
+Widget booksHorizontalScroll(
+    BuildContext context, List<Map<String, dynamic>> books) {
+  // print(books);
+  return books.isEmpty
       ? const Center(
           child: CircularProgressIndicator(),
         )
@@ -16,7 +15,7 @@ Widget booksHorizontalScroll(BuildContext context,
           width: MediaQuery.of(context).size.width,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: latestBook.length,
+            itemCount: books.length,
             itemBuilder: (context, index) {
               final book = books[index];
               return GestureDetector(

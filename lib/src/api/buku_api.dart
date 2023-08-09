@@ -10,8 +10,7 @@ Future<List<Map<String, dynamic>>> fetchBooksByQuery(String query) async {
   try {
     final apiKey = googleBooksApiKey;
     final response = await get(Uri.parse(
-        'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=10&key=$apiKey'));
-    print('Raw Response: ${response.body}');
+        'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=2&key=$apiKey'));
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);

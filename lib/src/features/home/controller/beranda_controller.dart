@@ -18,12 +18,4 @@ class BerandaController {
     model.journals = journalBookData;
     model.proceedings = proceedingBookData;
   }
-
-  void printDataStatus() {
-    print('userDataList: ${model.userDataList.length}');
-    print('latestBooks: ${model.latestBooks.length}');
-    print('generalBooks: ${model.generalBooks.length}');
-    print('journals: ${model.journals.length}');
-    print('proceedings: ${model.proceedings.length}');
-  }
 }

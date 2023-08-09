@@ -47,3 +47,7 @@ const String tFavoriteBody1 = 'Simpan daftar buku \nuntuk kamu baca';
 const String tFavoriteBody2 =
     'Untuk menambahkan buku, klik ikon\n wishlist yang ada pada detail buku';
 const String tFavoriteButtonText = 'Temukan Buku';
+
+// Profile
+const String tProfileName = 'Ariel Matius Surbakti';
+const String tProfileEmail = 'example@gmail.com';

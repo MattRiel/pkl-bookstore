@@ -3,7 +3,7 @@ import 'package:bookstore/frontpages/login.dart';
 import 'package:bookstore/src/features/book_detail/detailBuku.dart';
 import 'package:bookstore/src/features/book_read/readScreen.dart';
 import 'package:bookstore/src/features/favorite/favoriteScreen.dart';
-import 'package:bookstore/src/features/profile/profileScreen.dart';
+import 'package:bookstore/src/features/profile/view/profileScreen.dart';
 import 'package:bookstore/unused/bookdetails.dart';
 import 'package:bookstore/unused/homescreen.dart';
 import 'package:bookstore/unused/services.dart';

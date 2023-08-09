@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart';
 
 Future<List<Map<String, dynamic>>> fetchUserData() async {
@@ -6,7 +7,7 @@ Future<List<Map<String, dynamic>>> fetchUserData() async {
 
   try {
     userDataList.clear();
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 3; i++) {
       final response =
           await get(Uri.parse('https://randomuser.me/api?inc=name,picture'));
 
