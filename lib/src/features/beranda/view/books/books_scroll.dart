@@ -22,7 +22,7 @@ Widget booksHorizontalScroll(BuildContext context, List<Book> books) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DetailBuku(),
+                      builder: (context) => DetailBuku(book: book),
                     ),
                   );
                 },

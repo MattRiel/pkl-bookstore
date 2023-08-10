@@ -14,7 +14,7 @@ class BookService {
         'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=2&key=$apiKey';
 
     final response = await http.get(Uri.parse(url));
-
+    
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
 
@@ -30,7 +30,7 @@ class BookService {
           final publisher = volumeInfo['publisher'] ?? 'No Publisher';
           final publicationDate = volumeInfo['publishedDate'] ?? 'No Date';
           final numberOfPages = volumeInfo['pageCount'] ?? 0;
-          final editor = volumeInfo['editor'] ?? 'No Editor';
+          final language = volumeInfo['language'] ?? 'Unknown Language';
 
           books.add(Book(
             title: title,
@@ -40,7 +40,7 @@ class BookService {
             publisher: publisher,
             publicationDate: publicationDate,
             numberOfPages: numberOfPages,
-            editor: editor,
+            language: language,
           ));
         }
         return books;

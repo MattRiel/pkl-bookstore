@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:bookstore/frontpages/login.dart';
 import 'package:bookstore/src/features/beranda/view/beranda.dart';
-import 'package:bookstore/src/features/book_detail/detailBuku.dart';
 import 'package:bookstore/src/features/book_read/readScreen.dart';
 import 'package:bookstore/src/features/favorite/favoriteScreen.dart';
 import 'package:bookstore/src/features/profile/view/profileScreen.dart';
@@ -31,7 +30,6 @@ void main() {
       '/favorite': (context) => FavoriteScreen(),
       '/profile': (context) => ProfileScreen(),
       '/read': (context) => ReadScreen(),
-      '/detail_buku': (context) => DetailBuku(),
       '/login': (context) => Login(),
       '/spscreen1': (context) => SplashScreen1(),
     },

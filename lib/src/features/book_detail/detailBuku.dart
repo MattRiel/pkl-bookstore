@@ -5,7 +5,13 @@ import 'package:bookstore/src/features/book_detail/detailTopBar.dart';
 import 'package:bookstore/src/features/book_detail/detail_text_style.dart';
 import 'package:flutter/material.dart';
 
+import '../beranda/model/book_model.dart';
+
 class DetailBuku extends StatelessWidget {
+  final Book book;
+
+  DetailBuku({required this.book});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +25,7 @@ class DetailBuku extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
-            SizedBox(
+            Container(
               height: 370,
               width: 236,
               child: Padding(
@@ -28,29 +34,39 @@ class DetailBuku extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderRadius: BorderRadius.circular(8),
                         color: Colors.yellow,
                       ),
                       height: 206,
                       width: 152,
-                      child: Placeholder(),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image(
+                          image: NetworkImage(book.imageUrl),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      height: 44,
-                      child: Column(
-                        children: [
-                          Text(
-                            tBookName,
-                            style: DetailTextStyle.headline1,
-                          ),
-                          Text(
-                            tBookAuthor,
-                            style: DetailTextStyle.subheadline1,
-                          ),
-                        ],
+                    Expanded(
+                      child: SizedBox(
+                        height: 44,
+                        child: Column(
+                          children: [
+                            Text(
+                              book.title,
+                              style: DetailTextStyle.headline1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              book.author,
+                              style: DetailTextStyle.subheadline1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -67,7 +83,7 @@ class DetailBuku extends StatelessWidget {
                               style: DetailTextStyle.title1,
                             ),
                             Text(
-                              tBookLangValue,
+                              book.language,
                               style: DetailTextStyle.subtitle1,
                             ),
                           ],
@@ -79,7 +95,7 @@ class DetailBuku extends StatelessWidget {
                               style: DetailTextStyle.title1,
                             ),
                             Text(
-                              tBookPageValue,
+                              '${book.numberOfPages} $tBookPage',
                               style: DetailTextStyle.subtitle1,
                             ),
                           ],
@@ -115,8 +131,10 @@ class DetailBuku extends StatelessWidget {
                       height: 11,
                     ),
                     Text(
-                      tPlaceholderBookContent,
+                      book.description,
                       style: DetailTextStyle.contentStyle,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 10,
                       textAlign: TextAlign.justify,
                     ),
                     SizedBox(

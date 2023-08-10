@@ -6,7 +6,7 @@ class Book {
   final String publisher;
   final String publicationDate;
   final int numberOfPages;
-  final String editor;
+  final String language;
 
   Book({
     required this.title,
@@ -16,6 +16,6 @@ class Book {
     required this.publisher,
     required this.publicationDate,
     required this.numberOfPages,
-    required this.editor,
+    required this.language,
   });
 }
