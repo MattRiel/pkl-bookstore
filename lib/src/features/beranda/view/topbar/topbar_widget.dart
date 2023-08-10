@@ -1,6 +1,4 @@
-import 'package:bookstore/src/features/profile/view/profileScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../constants/text_strings.dart';
 import '../../controller/beranda_controller.dart';
@@ -28,9 +26,7 @@ Widget topBarWidget(BuildContext context, BerandaController controller) {
             ),
           ),
           IconButton(
-            onPressed: () {
-              Get.to(() => ProfileScreen());
-            },
+            onPressed: () {},
             icon: Icon(Icons.people),
             color: Colors.black,
           )

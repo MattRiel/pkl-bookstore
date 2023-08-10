@@ -7,8 +7,7 @@ import '../model/book_model.dart';
 
 class BerandaController {
   final BerandaModel model = BerandaModel();
-  final BookService bookService = BookService(
-      googleBooksApiKey); // Initialize BookService with your API key
+  final BookService bookService = BookService(googleBooksApiKey);
 
   Future<void> loadData() async {
     try {

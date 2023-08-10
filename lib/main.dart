@@ -20,8 +20,9 @@ void main() {
     /*theme: TAppTheme.lightTheme,
     darkTheme: TAppTheme.darkTheme,
     themeMode: ThemeMode.system,*/
-    defaultTransition: Transition.leftToRightWithFade,
-    transitionDuration: Duration(milliseconds: 1000),
+    // defaultTransition: Transition.leftToRightWithFade,
+    // transitionDuration: Duration(milliseconds: 1000),
+    
     debugShowCheckedModeBanner: false,
     initialRoute: '/start',
     routes: {

@@ -34,14 +34,14 @@ class _LoginState extends State<Login> {
                     fontSize: 30,
                     color: Colors.white),
               ),
-              Container(
+              SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 316,
                   child: Image.asset('figma/login_pic.png')),
               SizedBox(
                 height: 15,
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 200,
                 child: Column(
@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
                       height: 10,
                     ),
                     // Masuk button
-                    Container(
+                    SizedBox(
                       width: 295,
                       height: 32,
                       child: ElevatedButton(

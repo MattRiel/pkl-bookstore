@@ -22,8 +22,9 @@ class detailTopBar extends StatelessWidget {
               icon: Icon(Icons.arrow_back_ios_new),
               color: Colors.white,
             ),
-            Icon(
-              Icons.bookmark_outline,
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.bookmark_outline),
               color: Colors.white,
             )
           ],

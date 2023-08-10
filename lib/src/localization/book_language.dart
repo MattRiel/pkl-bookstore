@@ -1,0 +1,36 @@
+Map<String, String> languageMap = {
+  "en": "English",
+  "es": "Spanish",
+  "fr": "French",
+  "de": "German",
+  "it": "Italian",
+  "pt": "Portuguese",
+  "zh": "Chinese",
+  "ar": "Arabic",
+  "ru": "Russian",
+  "ja": "Japanese",
+  "ko": "Korean",
+  "tr": "Turkish",
+  "nl": "Dutch",
+  "sv": "Swedish",
+  "pl": "Polish",
+  "id": "Indonesian",
+  "ms": "Malay",
+  "th": "Thai",
+  "vi": "Vietnamese",
+  "hi": "Hindi",
+  "bn": "Bengali",
+  "fa": "Persian",
+  "uk": "Ukrainian",
+  "ro": "Romanian",
+  "hu": "Hungarian",
+  "cs": "Czech",
+  "fi": "Finnish",
+  "el": "Greek",
+  "da": "Danish",
+  "no": "Norwegian",
+};
+
+String getFullLanguageName(String languageCode) {
+  return languageMap[languageCode] ?? "Unknown Language";
+}

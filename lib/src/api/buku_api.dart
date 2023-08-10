@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../features/beranda/model/book_model.dart';
+import '../localization/book_language.dart';
 
 class BookService {
   final String apiKey;
@@ -14,7 +15,7 @@ class BookService {
         'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=2&key=$apiKey';
 
     final response = await http.get(Uri.parse(url));
-    
+
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
 
@@ -30,7 +31,8 @@ class BookService {
           final publisher = volumeInfo['publisher'] ?? 'No Publisher';
           final publicationDate = volumeInfo['publishedDate'] ?? 'No Date';
           final numberOfPages = volumeInfo['pageCount'] ?? 0;
-          final language = volumeInfo['language'] ?? 'Unknown Language';
+          final language = volumeInfo['language'] ?? 'Bahasa tidak dikenal';
+          final fullLanguage = getFullLanguageName(language);
 
           books.add(Book(
             title: title,
@@ -40,7 +42,7 @@ class BookService {
             publisher: publisher,
             publicationDate: publicationDate,
             numberOfPages: numberOfPages,
-            language: language,
+            language: fullLanguage,
           ));
         }
         return books;
@@ -53,18 +55,18 @@ class BookService {
   }
 
   Future<List<Book>> fetchLatestBooks() async {
-    return fetchBooksByQuery('latest computer');
+    return fetchBooksByQuery('tentang komputer');
   }
 
   Future<List<Book>> fetchGeneralBooks() async {
-    return fetchBooksByQuery('computer science');
+    return fetchBooksByQuery('pemrograman komputer');
   }
 
   Future<List<Book>> fetchJournals() async {
-    return fetchBooksByQuery('computer journal');
+    return fetchBooksByQuery('jurnal komputer');
   }
 
   Future<List<Book>> fetchProceedings() async {
-    return fetchBooksByQuery('computer proceeding');
+    return fetchBooksByQuery('proceeding komputer');
   }
 }

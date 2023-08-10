@@ -27,7 +27,8 @@ class DetailBuku extends StatelessWidget {
           children: [
             Container(
               height: 370,
-              width: 236,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: Column(
@@ -55,15 +56,19 @@ class DetailBuku extends StatelessWidget {
                         height: 44,
                         child: Column(
                           children: [
-                            Text(
-                              book.title,
-                              style: DetailTextStyle.headline1,
-                              overflow: TextOverflow.ellipsis,
+                            FittedBox(
+                              fit: BoxFit.scaleDown, // Adjust the text to fit
+                              child: Text(
+                                book.title,
+                                style: DetailTextStyle.headline1,
+                              ),
                             ),
-                            Text(
-                              book.author,
-                              style: DetailTextStyle.subheadline1,
-                              overflow: TextOverflow.ellipsis,
+                            FittedBox(
+                              fit: BoxFit.scaleDown, // Adjust the text to fit
+                              child: Text(
+                                book.author,
+                                style: DetailTextStyle.subheadline1,
+                              ),
                             ),
                           ],
                         ),
@@ -74,7 +79,7 @@ class DetailBuku extends StatelessWidget {
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
                           children: [
