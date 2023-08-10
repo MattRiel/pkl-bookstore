@@ -5,18 +5,21 @@ class TTextTheme {
   TTextTheme._(); // menghindari penggunaan instance
 
   static TextTheme lightTextTheme = TextTheme(
+      button: GoogleFonts.inter(
+        color: Colors.red,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+      ),
+      titleMedium: GoogleFonts.inter(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        color: Colors.red,
+      ),
       headlineSmall: GoogleFonts.roboto(
         color: Colors.black,
         fontSize: 20,
         fontWeight: FontWeight.w500,
       ),
-
-      // Digunakan pada tombol Lihat semua
-      /*labelSmall: GoogleFonts.inter(
-        // color: Color(0xFF7A7A7A),
-        color: Colors.red,
-        fontSize: 14,
-      ),*/
       headline2: GoogleFonts.montserrat(
         color: Colors.black87,
         fontSize: 16,

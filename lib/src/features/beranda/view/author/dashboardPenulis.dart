@@ -1,5 +1,6 @@
-import 'package:bookstore/src/features/home/controller/beranda_controller.dart';
 import 'package:flutter/material.dart';
+
+import '../../controller/beranda_controller.dart';
 
 Widget penulisWidget(BuildContext context, BerandaController controller) {
   var userDataTotal = controller.model.userDataList;

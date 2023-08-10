@@ -1,3 +1,4 @@
+import 'package:bookstore/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 
 import 'dashboard_category_buttons.dart';
@@ -11,7 +12,7 @@ Widget dashboardCategory(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Kategori",
+            tKategoriTitle,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 12),
@@ -21,11 +22,11 @@ Widget dashboardCategory(BuildContext context) {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                categoryButton('Buku Ajar', () {}),
+                categoryButton(tKategori1, () {}),
                 const SizedBox(width: 12),
-                categoryButton('Proceeding', () {}),
+                categoryButton(tKategori2, () {}),
                 const SizedBox(width: 12),
-                categoryButton('Journal', () {}),
+                categoryButton(tKategori3, () {}),
               ],
             ),
           ),
@@ -36,11 +37,11 @@ Widget dashboardCategory(BuildContext context) {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                categoryButton('Buku Panduan', () {}),
+                categoryButton(tKategori4, () {}),
                 const SizedBox(
                   width: 12,
                 ),
-                categoryButton('Buku Pedoman', () {}),
+                categoryButton(tKategori5, () {}),
               ],
             ),
           ),

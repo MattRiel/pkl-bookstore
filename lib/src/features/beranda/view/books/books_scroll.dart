@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../book_detail/detailBuku.dart';
+import '../../model/book_model.dart';
 
-Widget booksHorizontalScroll(
-    BuildContext context, List<Map<String, dynamic>> books) {
+Widget booksHorizontalScroll(BuildContext context, List<Book> books) {
   // print(books);
   return books.isEmpty
       ? const Center(
@@ -20,7 +19,12 @@ Widget booksHorizontalScroll(
               final book = books[index];
               return GestureDetector(
                 onTap: () {
-                  Get.to(() => const DetailBuku());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailBuku(),
+                    ),
+                  );
                 },
                 child: Row(
                   children: [
@@ -33,7 +37,7 @@ Widget booksHorizontalScroll(
                             child: Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: NetworkImage(book['imageUrl']),
+                                  image: NetworkImage(book.imageUrl),
                                   fit: BoxFit.cover,
                                 ),
                                 borderRadius: const BorderRadius.all(
@@ -45,7 +49,7 @@ Widget booksHorizontalScroll(
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            book['title'],
+                            book.title,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           )

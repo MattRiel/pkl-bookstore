@@ -1,52 +1,70 @@
 import 'dart:convert';
 
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
-import 'config.dart';
+import '../features/beranda/model/book_model.dart';
 
-Future<List<Map<String, dynamic>>> fetchBooksByQuery(String query) async {
-  List<Map<String, dynamic>> booksList = [];
+class BookService {
+  final String apiKey;
 
-  try {
-    final apiKey = googleBooksApiKey;
-    final response = await get(Uri.parse(
-        'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=2&key=$apiKey'));
+  BookService(this.apiKey);
+
+  Future<List<Book>> fetchBooksByQuery(String query) async {
+    final url =
+        'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=2&key=$apiKey';
+
+    final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
-      if (jsonData.containsKey('items') && jsonData['items'] is List) {
+
+      if (jsonData.containsKey('items')) {
+        final List<Book> books = [];
         for (var item in jsonData['items']) {
           final volumeInfo = item['volumeInfo'];
+
           final title = volumeInfo['title'];
-          final imageUrl =
-              volumeInfo['imageLinks']?['thumbnail'] ?? 'figma/book_icon.png';
-          booksList.add({'title': title, 'imageUrl': imageUrl});
+          final author = volumeInfo['authors']?.join(', ') ?? 'Unknown Author';
+          final description = volumeInfo['description'] ?? 'No description';
+          final imageUrl = volumeInfo['imageLinks']?['thumbnail'] ?? 'No Image';
+          final publisher = volumeInfo['publisher'] ?? 'No Publisher';
+          final publicationDate = volumeInfo['publishedDate'] ?? 'No Date';
+          final numberOfPages = volumeInfo['pageCount'] ?? 0;
+          final editor = volumeInfo['editor'] ?? 'No Editor';
+
+          books.add(Book(
+            title: title,
+            author: author,
+            description: description,
+            imageUrl: imageUrl,
+            publisher: publisher,
+            publicationDate: publicationDate,
+            numberOfPages: numberOfPages,
+            editor: editor,
+          ));
         }
+        return books;
       } else {
-        print('Format response tidak valid');
+        throw Exception('No books found');
       }
     } else {
-      print('Gagal memuat data. Cek status code: ${response.statusCode}');
+      throw Exception('Failed to fetch data');
     }
-  } catch (error) {
-    print('Terjadi error sebagai berikut: $error');
   }
 
-  return booksList;
-}
+  Future<List<Book>> fetchLatestBooks() async {
+    return fetchBooksByQuery('latest computer');
+  }
 
-Future<List<Map<String, dynamic>>> fetchLatestBooks() async {
-  return fetchBooksByQuery('latest computer');
-}
+  Future<List<Book>> fetchGeneralBooks() async {
+    return fetchBooksByQuery('computer science');
+  }
 
-Future<List<Map<String, dynamic>>> fetchGeneralBooks() async {
-  return fetchBooksByQuery('computer science');
-}
+  Future<List<Book>> fetchJournals() async {
+    return fetchBooksByQuery('computer journal');
+  }
 
-Future<List<Map<String, dynamic>>> fetchJournals() async {
-  return fetchBooksByQuery('computer journal');
-}
-
-Future<List<Map<String, dynamic>>> fetchProceedings() async {
-  return fetchBooksByQuery('computer proceeding');
+  Future<List<Book>> fetchProceedings() async {
+    return fetchBooksByQuery('computer proceeding');
+  }
 }

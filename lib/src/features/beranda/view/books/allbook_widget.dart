@@ -7,7 +7,6 @@ Widget dashboardLihatSemua(BuildContext context) {
     padding: const EdgeInsets.only(right: 24),
     child: Text(
       tLihatSemuaTitle,
-      style: Theme.of(context).textTheme.labelSmall,
     ),
   );
 }

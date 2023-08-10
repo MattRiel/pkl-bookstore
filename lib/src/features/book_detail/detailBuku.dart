@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:bookstore/src/constants/text_strings.dart';
+import 'package:bookstore/src/features/book_detail/detailTopBar.dart';
+import 'package:bookstore/src/features/book_detail/detail_text_style.dart';
 import 'package:flutter/material.dart';
 
 class DetailBuku extends StatelessWidget {
-  const DetailBuku({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,9 +13,7 @@ class DetailBuku extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color(0xFFF04437),
         elevation: 0,
-        actions: [
-          detailBukuTopBar(context),
-        ],
+        actions: [detailTopBar()],
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -44,20 +43,12 @@ class DetailBuku extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            'Buku Log Pendidikan Klinik',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
+                            tBookName,
+                            style: DetailTextStyle.headline1,
                           ),
                           Text(
-                            'Departemen Ilmu Kesehatan THT',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
+                            tBookAuthor,
+                            style: DetailTextStyle.subheadline1,
                           ),
                         ],
                       ),
@@ -72,45 +63,29 @@ class DetailBuku extends StatelessWidget {
                         Column(
                           children: [
                             Text(
-                              'Bahasa',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
+                              tBookLang,
+                              style: DetailTextStyle.title1,
                             ),
                             Text(
-                              'Bahasa Indonesia',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
+                              tBookLangValue,
+                              style: DetailTextStyle.subtitle1,
                             ),
                           ],
                         ),
                         Column(
                           children: [
                             Text(
-                              'Halaman',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
+                              tBookPage,
+                              style: DetailTextStyle.title1,
                             ),
                             Text(
-                              '150 Halaman',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
+                              tBookPageValue,
+                              style: DetailTextStyle.subtitle1,
                             ),
                           ],
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -120,6 +95,7 @@ class DetailBuku extends StatelessWidget {
             ),
             Expanded(
               child: Container(
+                padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -128,83 +104,43 @@ class DetailBuku extends StatelessWidget {
                   ),
                   color: Colors.white,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Tentang Buku',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 11,
-                      ),
-                      Text(
-                        'Sistem informasi untuk mengelola administrasi data akademik pada fakultas/program studi. Aplikasi ini mendukung perubahan kurikulum akademik, fleksibilitas pengelolaan transkrip mahasiswa serta menyediakan fungsi pelaporan DIKTI secara otomatis dan terintegrasi. Sistem ini juga mendukung sepenuhnya KRS online dan bimbingan akademik online.',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          color: Color(0xFF8B8B8B),
-                        ),
-                        textAlign: TextAlign.justify,
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF344054),
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            "Baca Buku",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      tBookAboutTitle,
+                      style: DetailTextStyle.aboutStyle,
+                    ),
+                    SizedBox(
+                      height: 11,
+                    ),
+                    Text(
+                      tPlaceholderBookContent,
+                      style: DetailTextStyle.contentStyle,
+                      textAlign: TextAlign.justify,
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF344054),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
                         ),
+                        onPressed: () {},
+                        child: Text(
+                          tBookReadButton,
+                          style: DetailTextStyle.title1,
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget detailBukuTopBar(BuildContext context) {
-    return Container(
-      color: Color(0xFFF04437),
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios_new),
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.bookmark_outline,
-              color: Colors.white,
             )
           ],
         ),

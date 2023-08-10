@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:bookstore/src/utils/theme/widget_theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
@@ -16,6 +17,7 @@ class TElevatedButtonTheme {
       backgroundColor: tSecondarycolor,
       side: BorderSide(color: tSecondarycolor),
       padding: EdgeInsets.symmetric(vertical: tButtonHeight),
+      textStyle: TTextTheme.lightTextTheme.button,
     ),
   );
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
