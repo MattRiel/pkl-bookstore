@@ -25,7 +25,7 @@ void main() {
     // transitionDuration: Duration(milliseconds: 1000),
 
     debugShowCheckedModeBanner: false,
-    initialRoute: '/favfill1',
+    initialRoute: '/read',
     routes: {
       '/start': (context) => MainScreen(),
       '/beranda': (context) => Beranda(),
