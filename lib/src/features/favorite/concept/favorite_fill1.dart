@@ -47,11 +47,11 @@ class _FavoriteScreenFill1State extends State<FavoriteScreenFill1> {
                     },
                     icon: Icon(
                       _isGridView
-                          ? Icons.list_outlined
+                          ? Icons.format_list_bulleted_outlined
                           : Icons.grid_view_outlined,
                       color: Colors.black,
                     ),
-                    tooltip: 'Lihat Sebagai',
+                    tooltip: _isGridView ? 'List View' : 'Grid View',
                   ),
                 ],
               ),
@@ -237,7 +237,7 @@ Widget favoriteSearch(BuildContext context) {
       // controller: searchController,
       decoration: InputDecoration(
         border: InputBorder.none,
-        hintText: "Searching",
+        hintText: tSearchTitle,
         hintStyle: TextStyle(color: Colors.grey[500]),
         prefixIcon: IconButton(
           hoverColor: Colors.transparent,
