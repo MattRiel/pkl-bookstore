@@ -90,7 +90,8 @@ class FavoriteScreen extends StatelessWidget {
                       width: 203,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("assets/logo/newFavIcon.png"),
+                            image: AssetImage(
+                                "assets/logo/bookFavPlaceholder.png"),
                             fit: BoxFit.cover),
                       ),
                     ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../features/beranda/view/beranda.dart';
 import '../features/book_read/readScreen.dart';
-import '../features/favorite/favoriteScreen.dart';
+import '../features/favorite/view/favoriteScreen.dart';
 import '../features/profile/view/profileScreen.dart';
 
 class MainScreen extends StatefulWidget {

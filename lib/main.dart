@@ -2,7 +2,8 @@
 import 'package:bookstore/frontpages/login.dart';
 import 'package:bookstore/src/features/beranda/view/beranda.dart';
 import 'package:bookstore/src/features/book_read/readScreen.dart';
-import 'package:bookstore/src/features/favorite/favoriteScreen.dart';
+import 'package:bookstore/src/features/favorite/concept/favorite_fill1.dart';
+import 'package:bookstore/src/features/favorite/view/favoriteScreen.dart';
 import 'package:bookstore/src/features/profile/view/profileScreen.dart';
 import 'package:bookstore/src/routing/screen_routing.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,9 @@ void main() {
     themeMode: ThemeMode.system,*/
     // defaultTransition: Transition.leftToRightWithFade,
     // transitionDuration: Duration(milliseconds: 1000),
-    
+
     debugShowCheckedModeBanner: false,
-    initialRoute: '/start',
+    initialRoute: '/favfill1',
     routes: {
       '/start': (context) => MainScreen(),
       '/beranda': (context) => Beranda(),
@@ -33,6 +34,9 @@ void main() {
       '/read': (context) => ReadScreen(),
       '/login': (context) => Login(),
       '/spscreen1': (context) => SplashScreen1(),
+
+      // Concept
+      '/favfill1': (context) => FavoriteScreenFill1(),
     },
   ));
 }
