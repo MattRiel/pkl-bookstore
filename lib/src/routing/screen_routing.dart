@@ -30,36 +30,54 @@ class _MainScreenState extends State<MainScreen> {
         index: currentIndexVar,
         children: screens,
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(12),
-          topRight: Radius.circular(12),
-        ),
-        child: BottomNavigationBar(
-            unselectedItemColor: Colors.white,
-            selectedItemColor: const Color(0xFF1D5755),
+      bottomNavigationBar: NavigationBarTheme(
+        data: const NavigationBarThemeData(
+            indicatorColor: Colors.white,
+            labelTextStyle: MaterialStatePropertyAll(
+              TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
+          ),
+          child: NavigationBar(
+            // animationDuration: Duration(seconds: 1),
+            height: 70,
             backgroundColor: Colors.green[500],
             elevation: 4,
-            type: BottomNavigationBarType.fixed,
-            currentIndex: currentIndexVar,
-            onTap: (index) {
-              setState(() {
-                currentIndexVar = index;
-              });
-            },
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+            selectedIndex: currentIndexVar,
+            onDestinationSelected: (index) =>
+                setState(() => this.currentIndexVar = index),
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(Icons.home_outlined),
                 label: "Beranda",
+                selectedIcon: Icon(Icons.home),
               ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite), label: "Favorit"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.chrome_reader_mode_outlined),
-                  label: "Bacaan"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: "Profil"),
-            ]),
+              NavigationDestination(
+                icon: Icon(Icons.favorite_outline),
+                label: "Favorit",
+                selectedIcon: Icon(Icons.favorite),
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.chrome_reader_mode_outlined),
+                label: "Bacaan",
+                selectedIcon: Icon(Icons.chrome_reader_mode),
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.person_outline_rounded),
+                label: "Profil",
+                selectedIcon: Icon(Icons.person),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../book_detail/detailBuku.dart';
 import '../../model/book_model.dart';
@@ -19,12 +20,7 @@ Widget booksHorizontalScroll(BuildContext context, List<Book> books) {
               final book = books[index];
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DetailBuku(book: book),
-                    ),
-                  );
+                  Get.to(() => DetailBuku(book: book));
                 },
                 child: Row(
                   children: [
