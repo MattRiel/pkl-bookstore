@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants/text_strings.dart';
-import '../../controller/beranda_controller.dart';
-
-Widget topBarWidget(BuildContext context, BerandaController controller) {
+Widget allTopBar(BuildContext context, String title) {
   return Container(
     color: Colors.white,
     width: MediaQuery.of(context).size.width,
@@ -17,11 +14,9 @@ Widget topBarWidget(BuildContext context, BerandaController controller) {
             color: Colors.black,
           ),
           TextButton(
-            onPressed: () {
-              controller.loadData();
-            },
-            child: const Text(
-              tBerandaTitle,
+            onPressed: () {},
+            child: Text(
+              title,
               style: TextStyle(fontSize: 20, color: Colors.black),
             ),
           ),

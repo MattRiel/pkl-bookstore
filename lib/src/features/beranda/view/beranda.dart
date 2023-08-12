@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:bookstore/src/features/beranda/model/book_model.dart';
+import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
+import 'package:bookstore/src/reusable_widgets/allTopBar.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/beranda_controller.dart';
 import 'author/dashboardPenulis.dart';
 import 'books/books_section.dart';
 import 'category/dashboard_category_section.dart';
-import 'search/search_widget.dart';
-import 'topbar/topbar_widget.dart';
 
 class Beranda extends StatefulWidget {
   const Beranda({super.key});
@@ -26,62 +26,67 @@ class _BerandaState extends State<Beranda> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        actions: [topBarWidget(context, _controller)],
+        actions: [allTopBar(context, 'Beranda')],
         backgroundColor: Colors.white,
       ),
       // main
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 24.0),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                dashboardSearch(context),
-                SizedBox(height: 40),
-                dashboardCategory(context),
-                SizedBox(height: 40),
-                FutureBuilder<void>(
-                  future: _controller.loadData(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else {
-                      return Column(
-                        children: [
-                          bookSection(
-                              context,
-                              _controller,
-                              _controller.model.latestBooks.cast<Book>(),
-                              'Buku Terbaru'),
-                          penulisWidget(context, _controller),
-                          SizedBox(height: 40),
-                          bookSection(
-                              context,
-                              _controller,
-                              _controller.model.generalBooks.cast<Book>(),
-                              'Buku Ajar'),
-                          bookSection(
-                              context,
-                              _controller,
-                              _controller.model.journals.cast<Book>(),
-                              'Journals'),
-                          bookSection(
-                              context,
-                              _controller,
-                              _controller.model.proceedings.cast<Book>(),
-                              'Proceeding'),
-                        ],
-                      );
-                    }
-                  },
+        child: Column(
+          children: [
+            AllSearchBar(),
+            Padding(
+              padding: const EdgeInsets.only(left: 24.0),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    SizedBox(height: 40),
+                    dashboardCategory(context),
+                    SizedBox(height: 40),
+                    FutureBuilder<void>(
+                      future: _controller.loadData(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else {
+                          return Column(
+                            children: [
+                              bookSection(
+                                  context,
+                                  _controller,
+                                  _controller.model.latestBooks.cast<Book>(),
+                                  'Buku Terbaru'),
+                              penulisWidget(context, _controller),
+                              SizedBox(height: 40),
+                              bookSection(
+                                  context,
+                                  _controller,
+                                  _controller.model.generalBooks.cast<Book>(),
+                                  'Buku Ajar'),
+                              bookSection(
+                                  context,
+                                  _controller,
+                                  _controller.model.journals.cast<Book>(),
+                                  'Journals'),
+                              bookSection(
+                                  context,
+                                  _controller,
+                                  _controller.model.proceedings.cast<Book>(),
+                                  'Proceeding'),
+                            ],
+                          );
+                        }
+                      },
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
