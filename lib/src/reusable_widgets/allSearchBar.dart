@@ -12,7 +12,7 @@ class AllSearchBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
+          borderRadius: BorderRadius.circular(15),
           color: Colors.grey[200],
         ),
         child: TextField(

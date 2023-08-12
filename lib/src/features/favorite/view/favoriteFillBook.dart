@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 import '../../../reusable_widgets/allGirdListAppBar.dart';
 
-class FavoriteScreenFill1 extends StatefulWidget {
-  const FavoriteScreenFill1({Key? key}) : super(key: key);
+class FavoriteFillBook extends StatefulWidget {
+  const FavoriteFillBook({Key? key}) : super(key: key);
 
   @override
-  _FavoriteScreenFill1State createState() => _FavoriteScreenFill1State();
+  _FavoriteFillBookState createState() => _FavoriteFillBookState();
 }
 
-class _FavoriteScreenFill1State extends State<FavoriteScreenFill1> {
+class _FavoriteFillBookState extends State<FavoriteFillBook> {
   bool _isGridView = false;
 
   @override

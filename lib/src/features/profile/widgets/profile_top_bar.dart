@@ -26,13 +26,12 @@ class profileTopBar extends StatelessWidget {
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
             ),
-            const CircleAvatar(
-              backgroundColor: Color(0xFFF2F4F7),
-              child: Icon(
+            IconButton(
+              icon: const Icon(
                 Icons.grid_view_outlined,
                 color: Colors.black,
-                size: 30,
               ),
+              onPressed: () {},
             )
           ],
         ),
