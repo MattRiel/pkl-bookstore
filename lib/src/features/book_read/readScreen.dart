@@ -1,6 +1,9 @@
 import 'package:bookstore/src/constants/image_strings.dart';
 import 'package:bookstore/src/constants/text_strings.dart';
+import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
 import 'package:flutter/material.dart';
+
+import '../../reusable_widgets/allGirdListAppBar.dart';
 
 class ReadScreen extends StatefulWidget {
   const ReadScreen({Key? key}) : super(key: key);
@@ -10,7 +13,7 @@ class ReadScreen extends StatefulWidget {
 }
 
 class _ReadScreenState extends State<ReadScreen> {
-  bool _isGridView = true;
+  bool _isGridView = false;
 
   int _calculateCrossAxisCount(double width) {
     if (width >= 1200) {
@@ -24,69 +27,36 @@ class _ReadScreenState extends State<ReadScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AppBar _appBar = buildAppBar(
+      context,
+      "Bacaan",
+      _isGridView,
+      () {
+        setState(() {
+          _isGridView = !_isGridView;
+        });
+      },
+    );
     double screenWidth = MediaQuery.of(context).size.width;
     int crossAxisCount = _calculateCrossAxisCount(screenWidth);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        actions: [
-          Container(
-            color: Colors.white,
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(
-                    Icons.menu_outlined,
-                    color: Colors.black,
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Bacaan",
-                      style: TextStyle(fontSize: 20, color: Colors.black),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      // Toggle the view mode
-                      setState(() {
-                        _isGridView = !_isGridView;
-                      });
-                    },
-                    icon: Icon(
-                      _isGridView
-                          ? Icons.format_list_bulleted_outlined
-                          : Icons.grid_view_outlined,
-                      color: Colors.black,
-                    ),
-                    tooltip: _isGridView ? 'List View' : 'Grid View',
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-        backgroundColor: Colors.white,
-      ),
+      appBar: _appBar,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            children: [
-              favoriteSearch(context),
-              const SizedBox(height: 24),
-              SizedBox(
+        child: Column(
+          children: [
+            const AllSearchBar(),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: _isGridView
                     ? _buildGridView(crossAxisCount)
                     : _buildListView(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -110,9 +80,9 @@ class _ReadScreenState extends State<ReadScreen> {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
-        crossAxisSpacing: 100,
-        mainAxisSpacing: 30,
-        childAspectRatio: 152 / 270,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 40,
+        childAspectRatio: 140 / 270,
       ),
       itemCount: 5,
       itemBuilder: (context, index) {
@@ -284,29 +254,4 @@ class _ReadScreenState extends State<ReadScreen> {
       ),
     );
   }
-}
-
-Widget favoriteSearch(BuildContext context) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: const BorderRadius.all(Radius.circular(15)),
-      color: Colors.grey[200],
-    ),
-    child: TextField(
-      // controller: searchController,
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        hintText: tSearchTitle,
-        hintStyle: TextStyle(color: Colors.grey[500]),
-        prefixIcon: IconButton(
-          hoverColor: Colors.transparent,
-          onPressed: () {},
-          icon: const Icon(
-            Icons.search,
-            color: Colors.black,
-          ),
-        ),
-      ),
-    ),
-  );
 }
