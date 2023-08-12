@@ -17,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final screens = [
     const Beranda(),
-    const FavoriteScreen(),
+    FavoriteScreen(),
     const ReadScreen(),
     ProfileScreen(),
   ];

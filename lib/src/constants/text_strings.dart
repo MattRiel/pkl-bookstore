@@ -1,10 +1,10 @@
 // generic text
 const String tLogin = 'Masuk';
 const String tSignup = 'Daftar';
+const String tSearch = 'Cari';
 
 // splash screen
 const String tAppName = 'Toko Buku';
-
 const String tAppTagLine = 'Buku adalah gerbang ilmu pengetahuan';
 
 // on boarding

@@ -4,8 +4,8 @@ const String tSplashTopIcon = 'assets/images/splash_images/splash-top-icon.png';
 const String tSplashImage =
     'assets/images/splash_images/splash-screen-image.png';
 
-const String tBookImagePlaceholder = 'assets/logo/book_icon.png';
-const String tBookFavPlaceholder = 'assets/logo/bookFavPlaceholder.png';
+const String tBookImagePlaceholder = 'assets/logo/book_icon.webp';
+const String tBookFavPlaceholder = 'assets/logo/fav_icon.webp';
 
 // on boarding
 const String tOnBoardingImage1 =
