@@ -5,7 +5,7 @@ import '../../../book_detail/detailBuku.dart';
 import '../../model/book_model.dart';
 
 Widget booksHorizontalScroll(BuildContext context, List<Book> books) {
-  // print(books);
+  int banyakBuku = (books.length ~/ 2);
   return books.isEmpty
       ? const Center(
           child: CircularProgressIndicator(),
@@ -15,7 +15,7 @@ Widget booksHorizontalScroll(BuildContext context, List<Book> books) {
           width: MediaQuery.of(context).size.width,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: books.length,
+            itemCount: banyakBuku,
             itemBuilder: (context, index) {
               final book = books[index];
               return GestureDetector(

@@ -11,8 +11,9 @@ class BookService {
   BookService(this.apiKey);
 
   Future<List<Book>> fetchBooksByQuery(String query) async {
+    final int banyakBuku = 10;
     final url =
-        'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=2&key=$apiKey';
+        'https://www.googleapis.com/books/v1/volumes?q=$query&maxResults=$banyakBuku&key=$apiKey';
 
     final response = await http.get(Uri.parse(url));
 

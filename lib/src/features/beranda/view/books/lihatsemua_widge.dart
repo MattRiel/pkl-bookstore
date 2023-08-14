@@ -1,12 +1,20 @@
+import 'package:bookstore/src/features/beranda/model/book_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../../constants/text_strings.dart';
+import '../../../book_lihat_semua/book_lihat_semua_screen.dart';
 
-Widget lihatSemuaWidget(BuildContext context) {
-  return const Padding(
+Widget lihatSemuaWidget(BuildContext context, List<Book> books, String title) {
+  return Padding(
     padding: EdgeInsets.only(right: 24),
-    child: Text(
-      tLihatSemuaTitle,
+    child: TextButton(
+      onPressed: () {
+        Get.to(() => BukuLihatSemua(
+              books: books,
+              titleSection: title,
+            ));
+      },
+      child: Text('Lihat Semua'),
     ),
   );
 }

@@ -19,7 +19,7 @@ Widget bookSection(BuildContext context, BerandaController controller,
               fontWeight: FontWeight.w500,
             ),
           ),
-          lihatSemuaWidget(context),
+          lihatSemuaWidget(context, data, title),
         ],
       ),
       const SizedBox(
