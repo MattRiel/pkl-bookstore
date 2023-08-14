@@ -43,6 +43,7 @@ class _ReadScreenState extends State<ReadScreen> {
       backgroundColor: Colors.white,
       appBar: _appBar,
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             const AllSearchBar(),
@@ -77,97 +78,94 @@ class _ReadScreenState extends State<ReadScreen> {
   }
 
   Widget _buildGridView(int crossAxisCount) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 40,
-        childAspectRatio: 140 / 270,
-      ),
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return gridCardView(index);
-      },
-    );
-  }
-
-  Widget gridCardView(int index) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: const Duration(milliseconds: 300),
-              content: Text('Buku $index ditekan'),
-            ),
-          );
-        },
-        child: SizedBox(
-          height: 270,
-          width: 152,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 250,
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage(tBookImagePlaceholder),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
+    return SingleChildScrollView(
+      child: Container(
+        height: 580,
+        child: GridView.builder(
+          itemCount: 7,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 30,
+              childAspectRatio: 140 / 250,
+              crossAxisCount: crossAxisCount),
+          itemBuilder: (context, index) {
+            return Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
               ),
-              const SizedBox(
-                height: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: InkWell(
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: const Duration(milliseconds: 300),
+                      content: Text('Buku $index ditekan'),
+                    ),
+                  );
+                },
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      '$tBookName $index',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                            image: AssetImage(tBookImagePlaceholder),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
                     ),
                     const SizedBox(
-                      height: 2,
+                      height: 8,
                     ),
-                    Text(
-                      '$tBookAuthor $index',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        color: Color(0xFF7A7A7A),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '$tBookName $index',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            '$tBookAuthor $index',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              color: Color(0xFF7A7A7A),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          SizedBox(
+                            child: LinearProgressIndicator(
+                              backgroundColor: Colors.grey,
+                              value: index.toDouble() * 0.2,
+                              valueColor:
+                                  const AlwaysStoppedAnimation(Colors.blue),
+                            ),
+                          )
+                        ],
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
                     ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    SizedBox(
-                      child: LinearProgressIndicator(
-                        backgroundColor: Colors.grey,
-                        value: index.toDouble() * 0.2,
-                        valueColor: const AlwaysStoppedAnimation(Colors.blue),
-                      ),
-                    )
                   ],
                 ),
               ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

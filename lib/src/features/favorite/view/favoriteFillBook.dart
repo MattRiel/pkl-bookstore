@@ -15,6 +15,16 @@ class FavoriteFillBook extends StatefulWidget {
 class _FavoriteFillBookState extends State<FavoriteFillBook> {
   bool _isGridView = false;
 
+  int _calculateCrossAxisCount(double width) {
+    if (width >= 1200) {
+      return 4;
+    } else if (width >= 800) {
+      return 3;
+    } else {
+      return 2;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     AppBar _appBar = buildAppBar(
@@ -27,6 +37,8 @@ class _FavoriteFillBookState extends State<FavoriteFillBook> {
         });
       },
     );
+    double screenWidth = MediaQuery.of(context).size.width;
+    int crossAxisCount = _calculateCrossAxisCount(screenWidth);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar,
@@ -41,7 +53,9 @@ class _FavoriteFillBookState extends State<FavoriteFillBook> {
                   const SizedBox(height: 24),
                   SizedBox(
                     height: MediaQuery.of(context).size.height,
-                    child: _isGridView ? _buildGridView() : _buildListView(),
+                    child: _isGridView
+                        ? _buildGridView(crossAxisCount)
+                        : _buildListView(),
                   ),
                 ],
               ),
@@ -66,77 +80,78 @@ class _FavoriteFillBookState extends State<FavoriteFillBook> {
     );
   }
 
-  Widget _buildGridView() {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 40,
-        childAspectRatio: 130 / 270,
-      ),
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return gridCardView(index);
-      },
-    );
-  }
-
-  Widget gridCardView(int index) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: const Duration(milliseconds: 300),
-              content: Text('Buku $index ditekan'),
-            ),
-          );
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 270,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                image: const DecorationImage(
-                  image: AssetImage(tBookImagePlaceholder),
-                  fit: BoxFit.fill,
-                ),
+  Widget _buildGridView(int crossAxisCount) {
+    return SingleChildScrollView(
+      child: Container(
+        height: 580,
+        child: GridView.builder(
+          itemCount: 5,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 40,
+            childAspectRatio: 130 / 270,
+          ),
+          itemBuilder: (context, index) {
+            return Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '$tBookName $index',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+              child: InkWell(
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: const Duration(milliseconds: 300),
+                      content: Text('Buku $index ditekan'),
                     ),
-                  ),
-                  Text(
-                    '$tBookAuthor $index',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      color: Color(0xFF7A7A7A),
+                  );
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 270,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        image: const DecorationImage(
+                          image: AssetImage(tBookImagePlaceholder),
+                          fit: BoxFit.fill,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '$tBookName $index',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            '$tBookAuthor $index',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              color: Color(0xFF7A7A7A),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
+            );
+          },
         ),
       ),
     );
