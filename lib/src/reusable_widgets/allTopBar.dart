@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 Widget allTopBar(BuildContext context, String title) {
   return Container(
-    color: Colors.white,
     width: MediaQuery.of(context).size.width,
     child: Padding(
       padding: const EdgeInsets.only(left: 24, right: 24),
@@ -21,6 +20,8 @@ Widget allTopBar(BuildContext context, String title) {
             ),
           ),
           IconButton(
+            splashColor: Colors.green[500],
+            splashRadius: 25,
             onPressed: () {},
             icon: Icon(Icons.people),
             color: Colors.black,

@@ -10,7 +10,6 @@ AppBar buildAppBar(
     elevation: 0,
     actions: [
       Container(
-        color: Colors.white,
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.only(left: 24, right: 24),
@@ -29,6 +28,8 @@ AppBar buildAppBar(
                 ),
               ),
               IconButton(
+                splashRadius: 25,
+                splashColor: Colors.green[500],
                 onPressed: toggleView,
                 icon: Icon(
                   isGridView

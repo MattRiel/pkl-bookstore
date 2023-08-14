@@ -22,6 +22,8 @@ class AllSearchBar extends StatelessWidget {
             hintText: tSearch,
             hintStyle: TextStyle(color: Colors.grey[500]),
             prefixIcon: IconButton(
+              splashRadius: 10,
+              splashColor: Colors.transparent,
               onPressed: () {},
               icon: const Icon(
                 Icons.search,
