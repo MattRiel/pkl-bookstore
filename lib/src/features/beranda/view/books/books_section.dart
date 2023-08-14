@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../controller/beranda_controller.dart';
 import '../../model/book_model.dart';
-import 'allbook_widget.dart';
 import 'books_scroll.dart';
+import 'lihatsemua_widge.dart';
 
 Widget bookSection(BuildContext context, BerandaController controller,
     List<Book> data, String title) {
@@ -19,7 +19,7 @@ Widget bookSection(BuildContext context, BerandaController controller,
               fontWeight: FontWeight.w500,
             ),
           ),
-          dashboardLihatSemua(context),
+          lihatSemuaWidget(context),
         ],
       ),
       const SizedBox(

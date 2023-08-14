@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 import '../features/beranda/view/beranda.dart';
@@ -31,16 +33,10 @@ class _MainScreenState extends State<MainScreen> {
         children: screens,
       ),
       bottomNavigationBar: NavigationBarTheme(
-        data: const NavigationBarThemeData(
-            indicatorColor: Colors.white,
-            labelTextStyle: MaterialStatePropertyAll(
-              TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected),
+        data: NavigationBarThemeData(
+            indicatorShape: CircleBorder(),
+            indicatorColor: Colors.transparent,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide),
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(12),
@@ -54,26 +50,58 @@ class _MainScreenState extends State<MainScreen> {
             selectedIndex: currentIndexVar,
             onDestinationSelected: (index) =>
                 setState(() => this.currentIndexVar = index),
-            destinations: const [
+            destinations: [
               NavigationDestination(
-                icon: Icon(Icons.home_outlined),
+                icon: Icon(
+                  Icons.home_outlined,
+                  size: 30,
+                ),
+                // Increase the size here
                 label: "Beranda",
-                selectedIcon: Icon(Icons.home),
+                selectedIcon: Icon(
+                  Icons.home,
+                  size: 30,
+                  color: Colors.white,
+                ), // Increase the size here
               ),
               NavigationDestination(
-                icon: Icon(Icons.favorite_outline),
+                icon: Icon(
+                  Icons.favorite_outline,
+                  size: 30,
+                ),
+                // Increase the size here
                 label: "Favorit",
-                selectedIcon: Icon(Icons.favorite),
+                selectedIcon: Icon(
+                  Icons.favorite,
+                  size: 30,
+                  color: Colors.white,
+                ), // Increase the size here
               ),
               NavigationDestination(
-                icon: Icon(Icons.chrome_reader_mode_outlined),
+                icon: Icon(
+                  Icons.chrome_reader_mode_outlined,
+                  size: 30,
+                ),
+                // Increase the size here
                 label: "Bacaan",
-                selectedIcon: Icon(Icons.chrome_reader_mode),
+                selectedIcon: Icon(
+                  Icons.chrome_reader_mode,
+                  size: 30,
+                  color: Colors.white,
+                ), // Increase the size here
               ),
               NavigationDestination(
-                icon: Icon(Icons.person_outline_rounded),
+                icon: Icon(
+                  Icons.person_outline_rounded,
+                  size: 30,
+                ),
+                // Increase the size here
                 label: "Profil",
-                selectedIcon: Icon(Icons.person),
+                selectedIcon: Icon(
+                  Icons.person,
+                  size: 30,
+                  color: Colors.white,
+                ), // Increase the size here
               ),
             ],
           ),

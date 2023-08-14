@@ -37,7 +37,7 @@ Widget booksHorizontalScroll(BuildContext context, List<Book> books) {
                                   fit: BoxFit.cover,
                                 ),
                                 borderRadius: const BorderRadius.all(
-                                  Radius.circular(20),
+                                  Radius.circular(12),
                                 ),
                               ),
                               height: 206,

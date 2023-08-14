@@ -61,7 +61,7 @@ class _BerandaState extends State<Beranda> {
                                   _controller.model.latestBooks.cast<Book>(),
                                   'Buku Terbaru'),
                               penulisWidget(context, _controller),
-                              SizedBox(height: 40),
+                              SizedBox(height: 20),
                               bookSection(
                                   context,
                                   _controller,
