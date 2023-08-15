@@ -1,18 +1,21 @@
-import 'package:bookstore/src/constants/image_strings.dart';
-import 'package:bookstore/src/constants/text_strings.dart';
+import 'package:bookstore/src/features/favorite/controller/favorite_controller.dart';
 import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../reusable_widgets/allGirdListAppBar.dart';
 
 class FavoriteFillBook extends StatefulWidget {
-  const FavoriteFillBook({Key? key}) : super(key: key);
+  FavoriteFillBook({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _FavoriteFillBookState createState() => _FavoriteFillBookState();
 }
 
 class _FavoriteFillBookState extends State<FavoriteFillBook> {
+  final FavoriteController favoriteController = Get.find();
   bool _isGridView = false;
 
   int _calculateCrossAxisCount(double width) {
@@ -67,151 +70,164 @@ class _FavoriteFillBookState extends State<FavoriteFillBook> {
   }
 
   Widget _buildListView() {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            listCardView(index),
-            const SizedBox(height: 12),
-          ],
-        );
-      },
+    return Obx(
+      () => ListView.builder(
+        itemCount: favoriteController.favoriteBooks.length,
+        itemBuilder: (context, index) {
+          final favBookList = favoriteController.favoriteBooks[index];
+          return Column(
+            children: [
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: InkWell(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        duration: const Duration(milliseconds: 300),
+                        content: Text('Buku $index ditekan'),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 52,
+                          height: 70,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(favBookList.imageUrl),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                favBookList.title,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                              ),
+                              Text(
+                                favBookList.author,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12,
+                                  color: Color(0xFF7A7A7A),
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            favoriteController.removeFromFavorites(favBookList);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+            ],
+          );
+        },
+      ),
     );
   }
 
   Widget _buildGridView(int crossAxisCount) {
-    return SingleChildScrollView(
-      child: Container(
-        height: 580,
-        child: GridView.builder(
-          itemCount: 5,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 40,
-            childAspectRatio: 130 / 270,
-          ),
-          itemBuilder: (context, index) {
-            return Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: InkWell(
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      duration: const Duration(milliseconds: 300),
-                      content: Text('Buku $index ditekan'),
-                    ),
-                  );
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 270,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        image: const DecorationImage(
-                          image: AssetImage(tBookImagePlaceholder),
-                          fit: BoxFit.fill,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '$tBookName $index',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
-                            '$tBookAuthor $index',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
-                              color: Color(0xFF7A7A7A),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget listCardView(int index) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: const Duration(milliseconds: 300),
-              content: Text('Buku $index ditekan'),
+    return Obx(
+      () => SingleChildScrollView(
+        child: SizedBox(
+          height: 580,
+          child: GridView.builder(
+            itemCount: favoriteController.favoriteBooks.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 40,
+              childAspectRatio: 130 / 270,
             ),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(right: 12.0),
-          child: Row(
-            children: [
-              Container(
-                width: 52,
-                height: 70,
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage(tBookImagePlaceholder),
-                    fit: BoxFit.cover,
-                  ),
+            itemBuilder: (context, index) {
+              final favBookGrid = favoriteController.favoriteBooks[index];
+              return Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '$tBookName $index',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                child: InkWell(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        duration: const Duration(milliseconds: 300),
+                        content: Text('Buku $index ditekan'),
                       ),
-                    ),
-                    Text(
-                      '$tBookAuthor $index',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        color: Color(0xFF7A7A7A),
+                    );
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 270,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          image: DecorationImage(
+                            image: NetworkImage(favBookGrid.imageUrl),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              favBookGrid.title,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                            Text(
+                              favBookGrid.author,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                color: Color(0xFF7A7A7A),
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const Icon(Icons.more_horiz),
-            ],
+              );
+            },
           ),
         ),
       ),

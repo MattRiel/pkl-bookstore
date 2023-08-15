@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'src/features/favorite/controller/favorite_controller.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
 
   runApp(GetMaterialApp(
+    initialBinding: InitialBindings(),
     /*theme: TAppTheme.lightTheme,
     darkTheme: TAppTheme.darkTheme,
     themeMode: ThemeMode.system,*/
@@ -18,4 +21,11 @@ void main() {
     home: MainScreen(),
     debugShowCheckedModeBanner: false,
   ));
+}
+
+class InitialBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.put(FavoriteController()); // Initialize and register here
+  }
 }

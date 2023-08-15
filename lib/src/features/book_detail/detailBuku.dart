@@ -19,7 +19,11 @@ class DetailBuku extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color(0xFFF04437),
         elevation: 0,
-        actions: [detailTopBar()],
+        actions: [
+          detailTopBar(
+            book: book,
+          )
+        ],
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
