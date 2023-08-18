@@ -18,3 +18,10 @@ const String tOnBoardingImage3 =
 // welcome string
 const String tWelcomeScreenImage =
     'assets/images/welcome_images/welcome-screen-image.png';
+
+// login screen
+const String tGoogleLogoImage = 'assets/logo/google-logo.png';
+
+// forget password
+const String tForgetPasswordImage =
+    'assets/images/forget_password/forget-password.png';

@@ -1,3 +1,4 @@
+import 'package:bookstore/src/features/book_detail/detailBuku.dart';
 import 'package:bookstore/src/features/favorite/controller/favorite_controller.dart';
 import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
 import 'package:flutter/material.dart';
@@ -34,13 +35,16 @@ class _FavoriteFillBookState extends State<FavoriteFillBook> {
       context,
       "Favorit Fill",
       _isGridView,
-      () {
+          () {
         setState(() {
           _isGridView = !_isGridView;
         });
       },
     );
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
     int crossAxisCount = _calculateCrossAxisCount(screenWidth);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -55,7 +59,10 @@ class _FavoriteFillBookState extends State<FavoriteFillBook> {
                 children: [
                   const SizedBox(height: 24),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height,
                     child: _isGridView
                         ? _buildGridView(crossAxisCount)
                         : _buildListView(),
@@ -71,166 +78,159 @@ class _FavoriteFillBookState extends State<FavoriteFillBook> {
 
   Widget _buildListView() {
     return Obx(
-      () => ListView.builder(
-        itemCount: favoriteController.favoriteBooks.length,
-        itemBuilder: (context, index) {
-          final favBookList = favoriteController.favoriteBooks[index];
-          return Column(
-            children: [
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: InkWell(
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        duration: const Duration(milliseconds: 300),
-                        content: Text('Buku $index ditekan'),
-                      ),
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 52,
-                          height: 70,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(favBookList.imageUrl),
-                              fit: BoxFit.cover,
+          () =>
+          ListView.builder(
+            itemCount: favoriteController.favoriteBooks.length,
+            itemBuilder: (context, index) {
+              final favBookList = favoriteController.favoriteBooks[index];
+              return Column(
+                children: [
+                  Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => DetailBuku(book: favBookList));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 52,
+                              height: 70,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(favBookList.imageUrl),
+                                  fit: BoxFit.cover,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                favBookList.title,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    favBookList.title,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                  Text(
+                                    favBookList.author,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12,
+                                      color: Color(0xFF7A7A7A),
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ],
                               ),
-                              Text(
-                                favBookList.author,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: Color(0xFF7A7A7A),
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                              ),
-                            ],
-                          ),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () {
+                                favoriteController.removeFromFavorites(
+                                    favBookList);
+                              },
+                            ),
+                          ],
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () {
-                            favoriteController.removeFromFavorites(favBookList);
-                          },
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 12),
-            ],
-          );
-        },
-      ),
+                  const SizedBox(height: 12),
+                ],
+              );
+            },
+          ),
     );
   }
 
   Widget _buildGridView(int crossAxisCount) {
     return Obx(
-      () => SingleChildScrollView(
-        child: SizedBox(
-          height: 580,
-          child: GridView.builder(
-            itemCount: favoriteController.favoriteBooks.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 40,
-              childAspectRatio: 130 / 270,
-            ),
-            itemBuilder: (context, index) {
-              final favBookGrid = favoriteController.favoriteBooks[index];
-              return Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+          () =>
+          SingleChildScrollView(
+            child: SizedBox(
+              height: 580,
+              child: GridView.builder(
+                itemCount: favoriteController.favoriteBooks.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 40,
+                  childAspectRatio: 130 / 270,
                 ),
-                child: InkWell(
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        duration: const Duration(milliseconds: 300),
-                        content: Text('Buku $index ditekan'),
-                      ),
-                    );
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 270,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          image: DecorationImage(
-                            image: NetworkImage(favBookGrid.imageUrl),
-                            fit: BoxFit.fill,
+                itemBuilder: (context, index) {
+                  final favBookGrid = favoriteController.favoriteBooks[index];
+                  return Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => DetailBuku(book: favBookGrid));
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 270,
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              image: DecorationImage(
+                                image: NetworkImage(favBookGrid.imageUrl),
+                                fit: BoxFit.fill,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+                          const SizedBox(height: 20),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  favBookGrid.title,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                                Text(
+                                  favBookGrid.author,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                    color: Color(0xFF7A7A7A),
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                      const SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              favBookGrid.title,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            Text(
-                              favBookGrid.author,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                                color: Color(0xFF7A7A7A),
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              );
-            },
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
-        ),
-      ),
     );
   }
 }

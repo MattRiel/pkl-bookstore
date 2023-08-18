@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:bookstore/src/routing/screen_routing.dart';
+import 'package:bookstore/src/features/authetication/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -18,7 +18,7 @@ void main() {
     themeMode: ThemeMode.system,*/
     // defaultTransition: Transition.leftToRightWithFade,
     // transitionDuration: Duration(milliseconds: 1000),
-    home: MainScreen(),
+    home: SplashScreen(),
     debugShowCheckedModeBanner: false,
   ));
 }
