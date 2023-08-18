@@ -1,10 +1,10 @@
 // generic text
 const String tLogin = 'Masuk';
 const String tSignup = 'Daftar';
+const String tSearch = 'Cari';
 
 // splash screen
 const String tAppName = 'Toko Buku';
-
 const String tAppTagLine = 'Buku adalah gerbang ilmu pengetahuan';
 
 // on boarding
@@ -51,3 +51,16 @@ const String tFavoriteButtonText = 'Temukan Buku';
 // Profile
 const String tProfileName = 'Ariel Matius Surbakti';
 const String tProfileEmail = 'example@gmail.com';
+
+// Detail Buku
+
+const String tBookName = 'Nama Buku';
+const String tBookAuthor = 'Penulis Buku';
+const String tBookLang = 'Bahasa';
+const String tBookLangValue = 'Bahasa Buku';
+const String tBookPage = 'Halaman';
+const String tBookPageValue = 'Jumlah $tBookPage';
+const String tBookAboutTitle = 'Tentang Buku';
+const String tPlaceholderBookContent =
+    'Sistem informasi untuk mengelola administrasi data akademik pada fakultas/program studi. Aplikasi ini mendukung perubahan kurikulum akademik, fleksibilitas pengelolaan transkrip mahasiswa serta menyediakan fungsi pelaporan DIKTI secara otomatis dan terintegrasi. Sistem ini juga mendukung sepenuhnya KRS online dan bimbingan akademik online.';
+const String tBookReadButton = 'Baca Buku';

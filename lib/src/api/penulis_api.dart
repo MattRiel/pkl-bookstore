@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 Future<List<Map<String, dynamic>>> fetchUserData() async {
@@ -16,10 +17,15 @@ Future<List<Map<String, dynamic>>> fetchUserData() async {
         if (jsonData.containsKey('results') && jsonData['results'] is List) {
           userDataList.add(jsonData['results'][0]);
         } else {
-          print('Format response tidak valid');
+          const SnackBar(
+            content: Text('Format response tidak valid'),
+          );
         }
       } else {
-        print('Gagal memuat data. Cek status code: ${response.statusCode}');
+        SnackBar(
+          content:
+              Text('Gagal memuat data. Status Code: ${response.statusCode}'),
+        );
       }
     }
   } catch (error) {

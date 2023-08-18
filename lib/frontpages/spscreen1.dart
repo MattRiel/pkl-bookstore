@@ -18,7 +18,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 316,
               child: Image.asset('figma/sp1.png')),
