@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 Widget allTopBar(BuildContext context, String title) {
-  return SizedBox(
+  return Container(
+    color: Colors.green[500],
     width: MediaQuery.of(context).size.width,
     child: Padding(
       padding: const EdgeInsets.only(left: 24, right: 24),

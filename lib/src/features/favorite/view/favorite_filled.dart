@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../reusable_widgets/all_grid_list_appbar.dart';
+import '../../../utils/screen_theme/reusable_theme.dart';
 
 class FavoriteFillBook extends StatefulWidget {
   const FavoriteFillBook({
@@ -44,7 +45,7 @@ class _FavoriteFillBookState extends State<FavoriteFillBook> {
     double screenWidth = MediaQuery.of(context).size.width;
     int crossAxisCount = _calculateCrossAxisCount(screenWidth);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ThemeUtils.getBackgroundColor(context),
       appBar: customAppBar,
       body: SingleChildScrollView(
         child: Column(

@@ -15,7 +15,7 @@ Widget categoryButton(String text, VoidCallback onPressed) {
         text,
         style: const TextStyle(
           fontWeight: FontWeight.w400,
-          fontSize: 14,
+          fontSize: 13,
           color: Color(0xFF282828),
         ),
       ),

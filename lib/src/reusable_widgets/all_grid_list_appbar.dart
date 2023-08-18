@@ -1,3 +1,4 @@
+import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
 AppBar buildAppBar(
@@ -16,10 +17,7 @@ AppBar buildAppBar(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
-                Icons.menu_outlined,
-                color: Colors.black,
-              ),
+              addHorizontalSpace(20),
               TextButton(
                 onPressed: () {},
                 child: Text(
@@ -29,7 +27,7 @@ AppBar buildAppBar(
               ),
               IconButton(
                 splashRadius: 25,
-                splashColor: Colors.green[500],
+                splashColor: Colors.black,
                 onPressed: toggleView,
                 icon: Icon(
                   isGridView
@@ -44,6 +42,6 @@ AppBar buildAppBar(
         ),
       )
     ],
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.green[500],
   );
 }

@@ -5,6 +5,7 @@ import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
 import 'package:bookstore/src/reusable_widgets/all_topbar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/screen_theme/reusable_theme.dart';
 import '../controller/beranda_controller.dart';
 import 'author/beranda_penulis.dart';
 import 'books/books_section.dart';
@@ -23,7 +24,7 @@ class _BerandaState extends State<Beranda> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ThemeUtils.getBackgroundColor(context),
       appBar: AppBar(
         elevation: 0,
         actions: [allTopBar(context, 'Beranda')],

@@ -3,6 +3,7 @@ import 'package:bookstore/src/features/profile/widgets/profile_top_bar.dart';
 import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/screen_theme/reusable_theme.dart';
 import '../widgets/profile_btn_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F4F7),
+      backgroundColor: ThemeUtils.getBackgroundColor(context),
       appBar: AppBar(
         elevation: 0,
         actions: const [ProfileTopbar()],
