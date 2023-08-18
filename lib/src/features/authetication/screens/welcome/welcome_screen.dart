@@ -27,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
     var height = mediaQuery.size.height;
     final isDarkMode = brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDarkMode ? tSecondarycolor : tPrimaryColor,
+      backgroundColor: isDarkMode ? tSecondarycolor : tWhiteColor,
       body: Stack(
         children: [
           TFadeInAnimation(
@@ -70,26 +70,30 @@ class WelcomeScreen extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: OutlinedButton(
+                        child: ElevatedButton(
                           onPressed: () {
                             Get.to(() => LoginScreen());
                           },
                           child: Text(
                             tLogin.toUpperCase(),
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: tWhiteColor),
                           ),
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.green[500])),
                         ),
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       Expanded(
-                        child: ElevatedButton(
+                        child: OutlinedButton(
                           onPressed: () {
                             Get.to(() => SignUpScreen());
                           },
                           child: Text(
                             tSignup.toUpperCase(),
+                            style: TextStyle(color: tPrimaryColor),
                           ),
                         ),
                       ),

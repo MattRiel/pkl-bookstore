@@ -1,8 +1,8 @@
 // generic text
 const String tNext = "Next";
-const String tLogin = "Login";
+const String tLogin = "Masuk";
 const String tEmail = "E-Mail";
-const String tSignup = "Signup";
+const String tSignup = "Daftar";
 const String tPhoneNo = "Phone No";
 const String tPassword = "Password";
 const String tFullName = "Full Name";
@@ -11,8 +11,8 @@ const String tSignInWithGoogle = "Sign-In with Google";
 const String tSearch = "Cari";
 
 // splash screen
-const String tAppName = 'Toko Buku';
-const String tAppTagLine = 'Buku adalah gerbang ilmu pengetahuan';
+const String tAppName = 'E-Book';
+const String tAppTagLine = 'USU';
 
 // on boarding
 const String tOnBoardingTitle1 = 'Buku Elektronik USU';

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../common_widgets/fade_in_animation/animation_design.dart';
 import '../../../../common_widgets/fade_in_animation/fade_in_animation_controller.dart';
 import '../../../../common_widgets/fade_in_animation/fade_in_animation_model.dart';
@@ -46,11 +47,11 @@ class SplashScreen extends StatelessWidget {
               children: [
                 Text(
                   tAppName,
-                  style: Theme.of(context).textTheme.headline3,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 Text(
-                  (tAppTagLine),
-                  style: Theme.of(context).textTheme.headline2,
+                  tAppTagLine,
+                  style: Theme.of(context).textTheme.displaySmall,
                 )
               ],
             ),
