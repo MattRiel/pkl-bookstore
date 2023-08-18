@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:bookstore/src/features/authetication/screens/splash_screen/splash_screen.dart';
+import 'package:bookstore/src/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,9 +14,6 @@ void main() {
 
   runApp(GetMaterialApp(
     initialBinding: InitialBindings(),
-    /*theme: TAppTheme.lightTheme,
-    darkTheme: TAppTheme.darkTheme,
-    themeMode: ThemeMode.system,*/
     // defaultTransition: Transition.leftToRightWithFade,
     // transitionDuration: Duration(milliseconds: 1000),
     home: SplashScreen(),
