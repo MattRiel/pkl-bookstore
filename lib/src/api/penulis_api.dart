@@ -17,19 +17,31 @@ Future<List<Map<String, dynamic>>> fetchUserData() async {
         if (jsonData.containsKey('results') && jsonData['results'] is List) {
           userDataList.add(jsonData['results'][0]);
         } else {
-          const SnackBar(
-            content: Text('Format response tidak valid'),
+          const ScaffoldMessenger(
+            child: SnackBar(
+              content: Text('Format response tidak valid'),
+            ),
           );
         }
       } else {
-        SnackBar(
-          content:
-              Text('Gagal memuat data. Status Code: ${response.statusCode}'),
+        ScaffoldMessenger(
+          child: SnackBar(
+            content:
+                Text('Gagal memuat data. Status Code: ${response.statusCode}'),
+          ),
         );
       }
     }
   } catch (error) {
-    print('Terjadi error sebagai berikut: $error');
+    ScaffoldMessenger(
+      child: SnackBar(
+        content: Text(
+          'Terjadi error sebagai berikut: $error',
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+      ),
+    );
   }
 
   return userDataList;

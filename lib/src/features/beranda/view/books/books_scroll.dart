@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../book_detail/detailBuku.dart';
+import '../../../book_detail/detail_buku.dart';
 import '../../model/book_model.dart';
 
 Widget booksHorizontalScroll(BuildContext context, List<Book> books) {

@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:bookstore/src/constants/text_strings.dart';
-import 'package:bookstore/src/features/book_detail/detailTopBar.dart';
-import 'package:bookstore/src/features/book_detail/detail_text_style.dart';
+import 'package:bookstore/src/features/book_detail/detail_textstyle.dart';
+import 'package:bookstore/src/features/book_detail/detail_topbar.dart';
 import 'package:flutter/material.dart';
 
 import '../beranda/model/book_model.dart';
@@ -10,7 +10,7 @@ import '../beranda/model/book_model.dart';
 class DetailBuku extends StatelessWidget {
   final Book book;
 
-  DetailBuku({required this.book});
+  const DetailBuku({super.key, required this.book});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class DetailBuku extends StatelessWidget {
         backgroundColor: Color(0xFFF04437),
         elevation: 0,
         actions: [
-          detailTopBar(
+          DetailTopbar(
             book: book,
           )
         ],

@@ -4,19 +4,19 @@ import 'package:get/get.dart';
 
 import '../beranda/model/book_model.dart';
 
-class detailTopBar extends StatefulWidget {
+class DetailTopbar extends StatefulWidget {
   final Book book;
 
-  detailTopBar({
+  const DetailTopbar({
     super.key,
     required this.book,
   });
 
   @override
-  State<detailTopBar> createState() => _detailTopBarState();
+  State<DetailTopbar> createState() => _DetailTopbarState();
 }
 
-class _detailTopBarState extends State<detailTopBar> {
+class _DetailTopbarState extends State<DetailTopbar> {
   final FavoriteController favoriteController = Get.find();
 
   @override

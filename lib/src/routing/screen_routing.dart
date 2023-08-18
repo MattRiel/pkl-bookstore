@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 
 import '../features/beranda/view/beranda.dart';
-import '../features/book_read/readScreen.dart';
-import '../features/favorite/view/favoriteScreen.dart';
-import '../features/profile/view/profileScreen.dart';
+import '../features/book_read/book_read_screen.dart';
+import '../features/favorite/view/favorite_screen.dart';
+import '../features/profile/view/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -49,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
             elevation: 4,
             selectedIndex: currentIndexVar,
             onDestinationSelected: (index) =>
-                setState(() => this.currentIndexVar = index),
+                setState(() => currentIndexVar = index),
             destinations: [
               NavigationDestination(
                 icon: Icon(

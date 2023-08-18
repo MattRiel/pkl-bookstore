@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:bookstore/src/features/favorite/view/favoriteFillBook.dart';
-import 'package:bookstore/src/features/favorite/view/favoriteNoBook.dart';
+import 'package:bookstore/src/features/favorite/view/favorite_empty.dart';
+import 'package:bookstore/src/features/favorite/view/favorite_filled.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteScreen extends StatefulWidget {

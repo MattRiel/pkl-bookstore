@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class profileTopBar extends StatelessWidget {
-  const profileTopBar({
+class ProfileTopbar extends StatelessWidget {
+  const ProfileTopbar({
     super.key,
   });
 

@@ -27,7 +27,7 @@ class OTPScreen extends StatelessWidget {
             ),
             Text(
               tOtpSubTitle.toUpperCase(),
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             SizedBox(
               height: 40,
@@ -44,7 +44,11 @@ class OTPScreen extends StatelessWidget {
               filled: true,
               fillColor: Colors.black.withOpacity(0.1),
               onSubmit: (code) {
-                print('OTP => $code');
+                ScaffoldMessenger(
+                  child: SnackBar(
+                    content: Text('OTP => $code'),
+                  ),
+                );
               },
             ),
             SizedBox(

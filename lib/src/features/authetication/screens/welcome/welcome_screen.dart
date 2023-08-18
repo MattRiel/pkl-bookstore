@@ -58,11 +58,11 @@ class WelcomeScreen extends StatelessWidget {
                     children: [
                       Text(
                         tWelcomeTitle,
-                        style: Theme.of(context).textTheme.headline3,
+                        style: Theme.of(context).textTheme.displaySmall,
                       ),
                       Text(
                         tWelcomeSubtitle,
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -74,13 +74,13 @@ class WelcomeScreen extends StatelessWidget {
                           onPressed: () {
                             Get.to(() => LoginScreen());
                           },
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.green[500])),
                           child: Text(
                             tLogin.toUpperCase(),
                             style: TextStyle(color: tWhiteColor),
                           ),
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.green[500])),
                         ),
                       ),
                       SizedBox(

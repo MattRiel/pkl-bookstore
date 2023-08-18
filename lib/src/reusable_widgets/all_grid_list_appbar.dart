@@ -9,7 +9,7 @@ AppBar buildAppBar(
   return AppBar(
     elevation: 0,
     actions: [
-      Container(
+      SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.only(left: 24, right: 24),
@@ -24,7 +24,7 @@ AppBar buildAppBar(
                 onPressed: () {},
                 child: Text(
                   title,
-                  style: TextStyle(fontSize: 20, color: Colors.black),
+                  style: const TextStyle(fontSize: 20, color: Colors.black),
                 ),
               ),
               IconButton(

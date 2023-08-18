@@ -1,4 +1,5 @@
 import 'package:bookstore/src/api/config.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../api/buku_api.dart';
 import '../../../api/penulis_api.dart';
@@ -23,7 +24,9 @@ class BerandaController {
       model.journals = journalBookData.cast<Map<String, dynamic>>();
       model.proceedings = proceedingBookData.cast<Map<String, dynamic>>();
     } catch (error) {
-      print('Error loading data: $error');
+      if (kDebugMode) {
+        print('Error loading data: $error');
+      }
     }
   }
 }

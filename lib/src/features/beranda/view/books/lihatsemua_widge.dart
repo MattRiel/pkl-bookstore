@@ -6,7 +6,7 @@ import '../../../book_lihat_semua/book_lihat_semua_screen.dart';
 
 Widget lihatSemuaWidget(BuildContext context, List<Book> books, String title) {
   return Padding(
-    padding: EdgeInsets.only(right: 24),
+    padding: const EdgeInsets.only(right: 24),
     child: TextButton(
       onPressed: () {
         Get.to(() => BukuLihatSemua(
@@ -14,7 +14,7 @@ Widget lihatSemuaWidget(BuildContext context, List<Book> books, String title) {
               titleSection: title,
             ));
       },
-      child: Text('Lihat Semua'),
+      child: const Text('Lihat Semua'),
     ),
   );
 }

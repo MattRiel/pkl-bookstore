@@ -2,8 +2,8 @@
 
 import 'package:bookstore/src/constants/image_strings.dart';
 import 'package:bookstore/src/constants/text_strings.dart';
-import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
-import 'package:bookstore/src/reusable_widgets/allTopBar.dart';
+import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
+import 'package:bookstore/src/reusable_widgets/all_topbar.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteNoBook extends StatelessWidget {

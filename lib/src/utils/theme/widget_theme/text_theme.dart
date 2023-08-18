@@ -5,7 +5,7 @@ class TTextTheme {
   TTextTheme._(); // menghindari penggunaan instance
 
   static TextTheme lightTextTheme = TextTheme(
-      button: GoogleFonts.inter(
+      labelLarge: GoogleFonts.inter(
         color: Colors.red,
         fontSize: 14,
         fontWeight: FontWeight.w400,
@@ -20,26 +20,26 @@ class TTextTheme {
         fontSize: 20,
         fontWeight: FontWeight.w500,
       ),
-      headline2: GoogleFonts.montserrat(
+      displayMedium: GoogleFonts.montserrat(
         color: Colors.black87,
         fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
-      headline4: GoogleFonts.inter(
+      headlineMedium: GoogleFonts.inter(
         fontSize: 18,
         color: Colors.grey[600],
       ),
-      subtitle2: GoogleFonts.poppins(
+      titleSmall: GoogleFonts.poppins(
         color: Colors.black54,
         fontSize: 24,
       ));
   static TextTheme darkTextTheme = TextTheme(
-      headline2: GoogleFonts.montserrat(
+      displayMedium: GoogleFonts.montserrat(
         color: Colors.white70,
         fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
-      subtitle2: GoogleFonts.poppins(
+      titleSmall: GoogleFonts.poppins(
         color: Colors.white60,
         fontSize: 24,
       ));

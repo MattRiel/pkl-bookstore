@@ -27,7 +27,7 @@ class ForgetPasswordScreen {
             ),
             Text(
               tForgetPasswordSubTitle,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             SizedBox(
               height: 30,

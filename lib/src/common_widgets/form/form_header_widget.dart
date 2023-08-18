@@ -37,11 +37,11 @@ class FormHeaderWidget extends StatelessWidget {
         ),
         Text(
           title,
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
         Text(
           subTitle,
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
           textAlign: textAlign,
         ),
       ],

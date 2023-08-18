@@ -67,7 +67,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFFf04437),
+                    backgroundColor: Color(0xFFf04437),
                   ),
                   onPressed: () {
                     setState(() {

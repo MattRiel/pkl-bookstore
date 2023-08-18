@@ -1,8 +1,8 @@
 import 'package:bookstore/src/features/beranda/model/book_model.dart';
-import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
+import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
 import 'package:flutter/material.dart';
 
-import '../../reusable_widgets/allGirdListAppBar.dart';
+import '../../reusable_widgets/all_grid_list_appbar.dart';
 import 'book_grid_view.dart';
 import 'book_list_view.dart';
 
@@ -23,7 +23,7 @@ class _BukuLihatSemuaState extends State<BukuLihatSemua> {
 
   @override
   Widget build(BuildContext context) {
-    AppBar _appBar = buildAppBar(
+    AppBar customAppBar = buildAppBar(
       context,
       widget.titleSection,
       _isGridView,
@@ -35,7 +35,7 @@ class _BukuLihatSemuaState extends State<BukuLihatSemua> {
     );
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _appBar,
+      appBar: customAppBar,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(

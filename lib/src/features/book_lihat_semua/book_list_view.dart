@@ -1,4 +1,5 @@
-import 'package:bookstore/src/features/book_detail/detailBuku.dart';
+import 'package:bookstore/src/features/book_detail/detail_buku.dart';
+import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,7 +43,7 @@ class BukuListView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      const SizedBox(width: 13),
+                      addHorizontalSpace(13),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,9 +58,7 @@ class BukuListView extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
+                            addVerticalSpace(10),
                             Text(
                               itemBookList.author,
                               style: const TextStyle(
@@ -70,9 +69,7 @@ class BukuListView extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                             ),
-                            const SizedBox(
-                              height: 8,
-                            ),
+                            addVerticalSpace(8)
                           ],
                         ),
                       ),
@@ -81,7 +78,7 @@ class BukuListView extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            addVerticalSpace(12),
           ],
         );
       },

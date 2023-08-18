@@ -2,7 +2,7 @@ import 'package:bookstore/src/features/beranda/model/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../book_detail/detailBuku.dart';
+import '../book_detail/detail_buku.dart';
 
 class BukuGridView extends StatelessWidget {
   final List<Book> books;

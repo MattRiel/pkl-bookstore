@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:bookstore/src/features/beranda/model/book_model.dart';
-import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
-import 'package:bookstore/src/reusable_widgets/allTopBar.dart';
+import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
+import 'package:bookstore/src/reusable_widgets/all_topbar.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/beranda_controller.dart';
-import 'author/dashboardPenulis.dart';
+import 'author/beranda_penulis.dart';
 import 'books/books_section.dart';
 import 'category/dashboard_category_section.dart';
 
