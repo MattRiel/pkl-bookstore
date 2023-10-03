@@ -13,10 +13,10 @@ class FavoriteFillBook extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FavoriteFillBookState createState() => _FavoriteFillBookState();
+  FavoriteFillBookState createState() => FavoriteFillBookState();
 }
 
-class _FavoriteFillBookState extends State<FavoriteFillBook> {
+class FavoriteFillBookState extends State<FavoriteFillBook> {
   final FavoriteController favoriteController = Get.find();
   bool _isGridView = false;
 

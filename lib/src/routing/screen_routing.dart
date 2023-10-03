@@ -6,6 +6,7 @@ import '../features/beranda/view/beranda.dart';
 import '../features/book_read/book_read_screen.dart';
 import '../features/favorite/view/favorite_screen.dart';
 import '../features/profile/view/profile_screen.dart';
+import '../utils/screen_theme/reusable_theme.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -45,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
           child: NavigationBar(
             // animationDuration: Duration(seconds: 1),
             height: 70,
-            backgroundColor: Colors.green[500],
+            backgroundColor: ThemeUtils.getNavbarBackgroundColor(context),
             elevation: 4,
             selectedIndex: currentIndexVar,
             onDestinationSelected: (index) =>

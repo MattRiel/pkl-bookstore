@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         actions: const [ProfileTopbar()],
-        backgroundColor: const Color(0xFFF2F4F7),
+        backgroundColor: Colors.green[500],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                               child: Icon(Icons.person),
                             ),
                           ),
-                          addHorizontalSpace(24),
+                          tWidthSpace(24),
                           const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    addVerticalSpace(24),
+                    tHeightSpace(24),
                     ProfileBtn(
                         text: "Notifikasi",
                         icon: Icons.toggle_on_rounded,

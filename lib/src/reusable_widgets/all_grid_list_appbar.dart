@@ -17,7 +17,7 @@ AppBar buildAppBar(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              addHorizontalSpace(20),
+              tWidthSpace(20),
               TextButton(
                 onPressed: () {},
                 child: Text(

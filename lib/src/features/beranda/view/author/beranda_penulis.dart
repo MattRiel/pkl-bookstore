@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 
+import '../../../../constants/text_strings.dart';
+import '../../../../utils/const_widget/sized_boxed.dart';
 import '../../controller/beranda_controller.dart';
 
-Widget penulisWidget(BuildContext context, BerandaController controller) {
-  var userDataTotal = controller.model.userDataList;
-  const titleTextStyle = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w500,
-  );
+Widget authorSection(BuildContext context, BerandaController controller) {
+  var multipleUsers = controller.model.userDataList;
 
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const Text(
-        "Penulis Paling Dicari",
-        style: titleTextStyle,
+      Text(
+        tPenulisDicariTitle,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
-      const SizedBox(height: 12),
+      tHeightSpace(12),
       SizedBox(
         height: 138,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: userDataTotal.length,
+          itemCount: multipleUsers.length,
           itemBuilder: (context, index) {
-            final userData = userDataTotal[index];
+            final singleUser = multipleUsers[index];
             return Row(
               children: [
                 SizedBox(
@@ -37,24 +35,25 @@ Widget penulisWidget(BuildContext context, BerandaController controller) {
                         width: 76,
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(
-                            userData['picture']['thumbnail'],
+                            singleUser['picture']['thumbnail'],
                           ),
                         ),
                       ),
-                      const SizedBox(height: 6),
-                      Text(
-                        '${userData['name']['first']}',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                            color: Color(0xFF282828)),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                      tHeightSpace(6),
+                      FittedBox(
+                        clipBehavior: Clip.none,
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          '${singleUser['name']['first']}',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
                       )
                     ],
                   ),
                 ),
-                const SizedBox(width: 20),
+                tWidthSpace(20),
               ],
             );
           },

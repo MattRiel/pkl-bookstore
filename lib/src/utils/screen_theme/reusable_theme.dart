@@ -10,6 +10,10 @@ class ThemeUtils {
   }
 
   static Color getBackgroundColor(BuildContext context) {
-    return isDarkMode(context) ? tSecondarycolor : tWhiteColor;
+    return isDarkMode(context) ? tWhatsappBgColor : tWhiteColor;
+  }
+
+  static Color getNavbarBackgroundColor(BuildContext context) {
+    return isDarkMode(context) ? tWhatsappNavColor : tPrimaryColor;
   }
 }

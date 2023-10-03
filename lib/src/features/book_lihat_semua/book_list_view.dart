@@ -6,16 +6,16 @@ import 'package:get/get.dart';
 import '../beranda/model/book_model.dart';
 
 class BukuListView extends StatelessWidget {
-  final List<Book> books;
+  final List<Book> multipleBooks;
 
-  const BukuListView({required this.books, super.key});
+  const BukuListView({required this.multipleBooks, super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: books.length,
+      itemCount: multipleBooks.length,
       itemBuilder: (context, index) {
-        final itemBookList = books[index];
+        final singleBook = multipleBooks[index];
         return Column(
           children: [
             Card(
@@ -25,7 +25,7 @@ class BukuListView extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  Get.to(() => DetailBuku(book: itemBookList));
+                  Get.to(() => DetailBuku(book: singleBook));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 12.0),
@@ -37,39 +37,32 @@ class BukuListView extends StatelessWidget {
                         height: 70,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(itemBookList.imageUrl),
+                            image: NetworkImage(singleBook.imageUrl),
                             fit: BoxFit.cover,
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      addHorizontalSpace(13),
+                      tWidthSpace(13),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              itemBookList.title,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              singleBook.title,
+                              style: Theme.of(context).textTheme.bodyLarge,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                             ),
-                            addVerticalSpace(10),
+                            tHeightSpace(10),
                             Text(
-                              itemBookList.author,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                                color: Color(0xFF7A7A7A),
-                              ),
+                              singleBook.author,
+                              style: Theme.of(context).textTheme.bodyMedium,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                             ),
-                            addVerticalSpace(8)
+                            tHeightSpace(8)
                           ],
                         ),
                       ),
@@ -78,7 +71,7 @@ class BukuListView extends StatelessWidget {
                 ),
               ),
             ),
-            addVerticalSpace(12),
+            tHeightSpace(12),
           ],
         );
       },

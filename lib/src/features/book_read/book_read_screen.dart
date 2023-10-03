@@ -11,10 +11,10 @@ class ReadScreen extends StatefulWidget {
   const ReadScreen({Key? key}) : super(key: key);
 
   @override
-  _ReadScreenState createState() => _ReadScreenState();
+  ReadScreenState createState() => ReadScreenState();
 }
 
-class _ReadScreenState extends State<ReadScreen> {
+class ReadScreenState extends State<ReadScreen> {
   bool _isGridView = false;
 
   int _calculateCrossAxisCount(double width) {
@@ -118,7 +118,7 @@ class _ReadScreenState extends State<ReadScreen> {
                         ),
                       ),
                     ),
-                    addVerticalSpace(8),
+                    tHeightSpace(8),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Column(
@@ -134,7 +134,7 @@ class _ReadScreenState extends State<ReadScreen> {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
-                          addVerticalSpace(2),
+                          tHeightSpace(2),
                           Text(
                             '$tBookAuthor $index',
                             style: const TextStyle(
@@ -145,7 +145,7 @@ class _ReadScreenState extends State<ReadScreen> {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
-                          addVerticalSpace(2),
+                          tHeightSpace(2),
                           SizedBox(
                             child: LinearProgressIndicator(
                               backgroundColor: Colors.grey,
@@ -221,7 +221,7 @@ class _ReadScreenState extends State<ReadScreen> {
                         color: Color(0xFF7A7A7A),
                       ),
                     ),
-                    addVerticalSpace(8),
+                    tHeightSpace(8),
                     SizedBox(
                       width: 160,
                       child: LinearProgressIndicator(
@@ -234,7 +234,7 @@ class _ReadScreenState extends State<ReadScreen> {
                 ),
               ),
               const Icon(Icons.file_download_outlined),
-              addHorizontalSpace(12),
+              tWidthSpace(12),
               const Icon(Icons.more_horiz),
             ],
           ),

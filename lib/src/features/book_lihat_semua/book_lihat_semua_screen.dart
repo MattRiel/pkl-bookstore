@@ -1,8 +1,11 @@
 import 'package:bookstore/src/features/beranda/model/book_model.dart';
 import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
+import 'package:bookstore/src/utils/const_widget/device_sizes.dart';
+import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
 import '../../reusable_widgets/all_grid_list_appbar.dart';
+import '../../utils/screen_theme/reusable_theme.dart';
 import 'book_grid_view.dart';
 import 'book_list_view.dart';
 
@@ -15,10 +18,10 @@ class BukuLihatSemua extends StatefulWidget {
       : super(key: key);
 
   @override
-  _BukuLihatSemuaState createState() => _BukuLihatSemuaState();
+  BukuLihatSemuaState createState() => BukuLihatSemuaState();
 }
 
-class _BukuLihatSemuaState extends State<BukuLihatSemua> {
+class BukuLihatSemuaState extends State<BukuLihatSemua> {
   bool _isGridView = false;
 
   @override
@@ -34,21 +37,21 @@ class _BukuLihatSemuaState extends State<BukuLihatSemua> {
       },
     );
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ThemeUtils.getBackgroundColor(context),
       appBar: customAppBar,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
             const AllSearchBar(),
-            const SizedBox(height: 20),
+            tHeightSpace(20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height,
+                height: deviceScreenHeigth(context),
                 child: _isGridView
-                    ? BukuGridView(books: widget.books)
-                    : BukuListView(books: widget.books),
+                    ? BukuGridView(multipleBooks: widget.books)
+                    : BukuListView(multipleBooks: widget.books),
               ),
             ),
           ],

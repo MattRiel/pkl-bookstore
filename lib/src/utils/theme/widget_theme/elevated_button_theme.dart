@@ -3,29 +3,26 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
-import '../../../constants/sizes.dart';
 
 class TElevatedButtonTheme {
   TElevatedButtonTheme._();
 
   static final lightElevatedButtonTheme = ElevatedButtonThemeData(
-    style: OutlinedButton.styleFrom(
+    style: ElevatedButton.styleFrom(
       elevation: 0,
-      foregroundColor: Colors.red,
-      backgroundColor: tSecondarycolor,
-      side: BorderSide(color: tSecondarycolor),
-      padding: EdgeInsets.symmetric(vertical: tButtonHeight),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      foregroundColor: tBodyTextColor,
+      backgroundColor: tCategoryButtonBg,
+      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
   );
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
-    style: OutlinedButton.styleFrom(
+    style: ElevatedButton.styleFrom(
       elevation: 0,
-      backgroundColor: tWhiteColor,
       foregroundColor: tSecondarycolor,
-      side: BorderSide(color: tWhiteColor),
-      padding: EdgeInsets.symmetric(vertical: tButtonHeight),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      backgroundColor: tWhiteColor,
+      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
   );
 }

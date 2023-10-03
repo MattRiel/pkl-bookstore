@@ -45,8 +45,8 @@ const String tBukuTerbaruTitle = 'Buku Terbaru';
 const String tLihatSemuaTitle = 'Lihat semua';
 const String tPenulisDicariTitle = 'Penulis Paling Dicari';
 const String tBukuAjarTitle = 'Buku Ajar';
-const String tJournalTitle = 'Journal';
-const String tProceedingTitle = 'Proceeding';
+const String tJournalTitle = 'Journals';
+const String tProceedingTitle = 'Proceedings';
 
 // Favorite
 const String tFavoriteTitle = 'Favorit';

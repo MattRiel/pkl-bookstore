@@ -1,3 +1,4 @@
+import 'package:bookstore/src/constants/colors.dart';
 import 'package:bookstore/src/constants/text_strings.dart';
 import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +14,14 @@ class AllSearchBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          addVerticalSpace(10),
+          tHeightSpace(10),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(12),
+              color: tSearchBarBg,
             ),
             child: TextField(
-              // controller: searchController,
+              enabled: false,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: tSearch,
@@ -30,8 +31,8 @@ class AllSearchBar extends StatelessWidget {
                   splashColor: Colors.transparent,
                   onPressed: () {},
                   icon: const Icon(
-                    Icons.search,
-                    color: Colors.black,
+                    Icons.search_sharp,
+                    color: tDarkColor,
                   ),
                 ),
               ),

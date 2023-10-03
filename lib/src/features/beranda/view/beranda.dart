@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:bookstore/src/constants/text_strings.dart';
 import 'package:bookstore/src/features/beranda/model/book_model.dart';
 import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
 import 'package:bookstore/src/reusable_widgets/all_topbar.dart';
+import 'package:bookstore/src/utils/const_widget/device_sizes.dart';
+import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/screen_theme/reusable_theme.dart';
@@ -26,9 +29,7 @@ class _BerandaState extends State<Beranda> {
     return Scaffold(
       backgroundColor: ThemeUtils.getBackgroundColor(context),
       appBar: AppBar(
-        elevation: 0,
         actions: [allTopBar(context, 'Beranda')],
-        backgroundColor: Colors.white,
       ),
       // main
       body: SingleChildScrollView(
@@ -39,48 +40,44 @@ class _BerandaState extends State<Beranda> {
             Padding(
               padding: const EdgeInsets.only(left: 24.0),
               child: SizedBox(
-                width: MediaQuery.of(context).size.width,
+                width: deviceScreenWidth(context),
                 child: Column(
                   children: [
-                    SizedBox(height: 40),
-                    dashboardCategory(context),
-                    SizedBox(height: 40),
+                    tHeightSpace(40),
+                    categorySection(context),
+                    tHeightSpace(40),
                     FutureBuilder<void>(
                       future: _controller.loadData(),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else {
-                          return Column(
-                            children: [
-                              bookSection(
-                                  context,
-                                  _controller,
-                                  _controller.model.latestBooks.cast<Book>(),
-                                  'Buku Terbaru'),
-                              penulisWidget(context, _controller),
-                              SizedBox(height: 20),
-                              bookSection(
-                                  context,
-                                  _controller,
-                                  _controller.model.generalBooks.cast<Book>(),
-                                  'Buku Ajar'),
-                              bookSection(
-                                  context,
-                                  _controller,
-                                  _controller.model.journals.cast<Book>(),
-                                  'Journals'),
-                              bookSection(
-                                  context,
-                                  _controller,
-                                  _controller.model.proceedings.cast<Book>(),
-                                  'Proceeding'),
-                            ],
-                          );
-                        }
+                        return Column(
+                          children: [
+                            bookSection(
+                              context,
+                              _controller,
+                              _controller.model.latestBooks.cast<Book>(),
+                              tBukuTerbaruTitle,
+                            ),
+                            authorSection(context, _controller),
+                            bookSection(
+                              context,
+                              _controller,
+                              _controller.model.generalBooks.cast<Book>(),
+                              tBukuAjarTitle,
+                            ),
+                            bookSection(
+                              context,
+                              _controller,
+                              _controller.model.journals.cast<Book>(),
+                              tJournalTitle,
+                            ),
+                            bookSection(
+                              context,
+                              _controller,
+                              _controller.model.proceedings.cast<Book>(),
+                              tProceedingTitle,
+                            ),
+                          ],
+                        );
                       },
                     ),
                   ],

@@ -1,3 +1,4 @@
+import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/beranda_controller.dart';
@@ -14,19 +15,14 @@ Widget bookSection(BuildContext context, BerandaController controller,
         children: [
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-            ),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
-          lihatSemuaWidget(context, data, title),
+          lihatSemuaButton(context, data, title),
         ],
       ),
-      const SizedBox(
-        height: 12,
-      ),
+      tHeightSpace(12),
       booksHorizontalScroll(context, data),
-      const SizedBox(height: 40),
+      tHeightSpace(40),
     ],
   );
 }
