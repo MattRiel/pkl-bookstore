@@ -1,18 +1,18 @@
-# Bookstore Mobile Application
+# OGE : Digital Library
 
-![Flutter Version](https://img.shields.io/badge/Flutter-v2.5.2-blue)
-![Dart Version](https://img.shields.io/badge/Dart-v2.14.3-blue)
-
-This is a Flutter-based mobile application project for a Bookstore. The application allows users to browse and search for various books available in the store.
+Oge is a dedicated digital library application tailored for the University of Sumatera Utara (USU) community. This innovative app aims to revolutionize access to knowledge and learning resources by providing a seamless platform for students and faculty members to explore an extensive collection of digital books, academic papers, research materials, and more. With intuitive features and easy navigation, Oge facilitates efficient learning and research experiences within the academic landscape of USU.
 
 ## Features
+- Explore and search for various books
+- Access detailed book information such as title, author, and description
+- Include books in your personal collection
 
-- Browse and search for books
-- View book details, including title, author, and description
+## App Demonstration
+Feel free to explore the application demo [here](https://appetize.io/app/lkm3vk2et3oqagr5leekn7hxua?device=pixel4&osVersion=10.0&scale=75).
 
-## Screenshots
+Give the app a try on Android 11 devices.
 
-*Add some screenshots of the app here*
+*Kindly acknowledge that the application is currently under development and will undergo periodic updates.*
 
 ## Installation
 
@@ -41,9 +41,8 @@ flutter run
 ```
 
 ## Technologies Used
-
-- Flutter
-- Dart
+![Flutter Version](https://img.shields.io/badge/Flutter-v3.5.1-blue)
+![Dart Version](https://img.shields.io/badge/Dart-v2.19.0-blue)
 
 ## Contributing
 
