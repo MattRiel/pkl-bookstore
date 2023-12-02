@@ -20,13 +20,13 @@ dependencies:
   liquid_swipe: ^3.1.0
   get: ^4.6.5
   smooth_page_indicator: ^1.1.0
-  google_fonts: ^5.1.0
+  google_fonts: ^6.1.0
   flutter_otp_text_field: ^1.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
