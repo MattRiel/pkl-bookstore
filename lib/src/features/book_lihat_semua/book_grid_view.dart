@@ -25,68 +25,64 @@ class BukuGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = deviceScreenWidth(context);
     int crossAxisCount = _calculateCrossAxisCount(screenWidth);
-    return SingleChildScrollView(
-      child: SizedBox(
-        height: 580,
-        child: GridView.builder(
-          itemCount: multipleBooks.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 30,
-              childAspectRatio: 140 / 250,
-              crossAxisCount: crossAxisCount),
-          itemBuilder: (context, index) {
-            final singleBook = multipleBooks[index];
-            return Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: InkWell(
-                onTap: () {
-                  Get.to(() => DetailBuku(book: singleBook));
-                },
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(singleBook.imageUrl),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+    return GridView.builder(
+      shrinkWrap: true,
+      itemCount: multipleBooks.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 30,
+          childAspectRatio: 140 / 250,
+          crossAxisCount: crossAxisCount),
+      itemBuilder: (context, index) {
+        final singleBook = multipleBooks[index];
+        return Card(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: InkWell(
+            onTap: () {
+              Get.to(() => DetailBuku(book: singleBook));
+            },
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: NetworkImage(singleBook.imageUrl),
+                        fit: BoxFit.fill,
                       ),
                     ),
-                    tHeightSpace(8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            singleBook.title,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          Text(
-                            singleBook.author,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            );
-          },
-        ),
-      ),
+                tHeightSpace(8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        singleBook.title,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                      Text(
+                        singleBook.author,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -12,67 +12,64 @@ class BukuListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (ctx, i) => tHeightSpace(12),
+      shrinkWrap: true,
       itemCount: multipleBooks.length,
       itemBuilder: (context, index) {
         final singleBook = multipleBooks[index];
-        return Column(
-          children: [
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: InkWell(
-                onTap: () {
-                  Get.to(() => DetailBuku(book: singleBook));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 52,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(singleBook.imageUrl),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+        return Card(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: InkWell(
+            onTap: () {
+              Get.to(() => DetailBuku(book: singleBook));
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 52,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(singleBook.imageUrl),
+                        fit: BoxFit.cover,
                       ),
-                      tWidthSpace(13),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              singleBook.title,
-                              style: Theme.of(context).textTheme.bodyLarge,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
-                            tHeightSpace(10),
-                            Text(
-                              singleBook.author,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                            tHeightSpace(8)
-                          ],
-                        ),
-                      ),
-                    ],
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                ),
+                  tWidthSpace(13),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          singleBook.title,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                        tHeightSpace(10),
+                        Text(
+                          singleBook.author,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        tHeightSpace(8)
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            tHeightSpace(12),
-          ],
+          ),
         );
       },
     );

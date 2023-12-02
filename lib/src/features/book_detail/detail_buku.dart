@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/text_strings.dart';
-import '../../utils/const_widget/device_sizes.dart';
 import '../../utils/const_widget/sized_boxed.dart';
 import '../../utils/screen_theme/reusable_theme.dart';
 import '../beranda/model/book_model.dart';
@@ -29,12 +28,11 @@ class DetailBuku extends StatelessWidget {
         ],
       ),
       body: SizedBox(
-        width: deviceScreenWidth(context),
         child: Column(
           children: [
             Container(
+              // color: Colors.grey,
               height: 370,
-              width: deviceScreenWidth(context),
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -127,7 +125,7 @@ class DetailBuku extends StatelessWidget {
                   color: tWhiteColor,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       tBookAboutTitle,
@@ -143,18 +141,20 @@ class DetailBuku extends StatelessWidget {
                     ),
                     tHeightSpace(12),
                     SizedBox(
-                      width: double.infinity,
+                      height: 30,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF344054),
                           shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12),
+                            ),
                           ),
                         ),
                         onPressed: () {},
-                        child: const Text(
+                        child: Text(
                           tBookReadButton,
-                          style: DetailTextStyle.title1,
+                          style: DetailTextStyle.title1.copyWith(fontSize: 12),
                         ),
                       ),
                     ),

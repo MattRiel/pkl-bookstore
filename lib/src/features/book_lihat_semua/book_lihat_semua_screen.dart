@@ -1,7 +1,5 @@
 import 'package:bookstore/src/features/beranda/model/book_model.dart';
 import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
-import 'package:bookstore/src/utils/const_widget/device_sizes.dart';
-import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
 import '../../reusable_widgets/all_grid_list_appbar.dart';
@@ -39,23 +37,18 @@ class BukuLihatSemuaState extends State<BukuLihatSemua> {
     return Scaffold(
       backgroundColor: ThemeUtils.getBackgroundColor(context),
       appBar: customAppBar,
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            const AllSearchBar(),
-            tHeightSpace(20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: SizedBox(
-                height: deviceScreenHeigth(context),
-                child: _isGridView
-                    ? BukuGridView(multipleBooks: widget.books)
-                    : BukuListView(multipleBooks: widget.books),
-              ),
+      body: Column(
+        children: [
+          const AllSearchBar(),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: _isGridView
+                  ? BukuGridView(multipleBooks: widget.books)
+                  : BukuListView(multipleBooks: widget.books),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

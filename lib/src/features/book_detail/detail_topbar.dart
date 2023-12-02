@@ -26,7 +26,7 @@ class _DetailTopbarState extends State<DetailTopbar> {
       color: const Color(0xFFF04437),
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

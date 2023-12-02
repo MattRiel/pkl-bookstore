@@ -45,7 +45,7 @@ Widget authorSection(BuildContext context, BerandaController controller) {
                         fit: BoxFit.fitWidth,
                         child: Text(
                           '${singleUser['name']['first']}',
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 12),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
