@@ -1,31 +1,36 @@
+import 'package:bookstore/src/constants/colors.dart';
+import 'package:bookstore/src/utils/const_widget/device_sizes.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/screen_theme/reusable_theme.dart';
 
 Widget allTopBar(BuildContext context, String title) {
   return Container(
-    width: MediaQuery.of(context).size.width,
+    color: ThemeUtils.getNavbarBackgroundColor(context),
+    width: deviceScreenWidth(context),
     child: Padding(
       padding: const EdgeInsets.only(left: 24, right: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Icon(
+          Icon(
             Icons.menu_outlined,
-            color: Colors.black,
+            color: ThemeUtils.isDarkMode(context) ? tPrimaryColor : tDarkColor,
           ),
           TextButton(
             onPressed: () {},
             child: Text(
               title,
-              style: TextStyle(fontSize: 20, color: Colors.black),
+              style: Theme.of(context).textTheme.displayLarge,
             ),
           ),
           IconButton(
             splashColor: Colors.green[500],
             splashRadius: 25,
             onPressed: () {},
-            icon: Icon(Icons.people),
-            color: Colors.black,
-          )
+            icon: const Icon(Icons.people),
+            color: ThemeUtils.isDarkMode(context) ? tPrimaryColor : tDarkColor,
+          ),
         ],
       ),
     ),

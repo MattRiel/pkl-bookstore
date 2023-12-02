@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../book_detail/detailBuku.dart';
+import '../../../../utils/const_widget/device_sizes.dart';
+import '../../../../utils/const_widget/sized_boxed.dart';
+import '../../../book_detail/detail_buku.dart';
 import '../../model/book_model.dart';
 
-Widget booksHorizontalScroll(BuildContext context, List<Book> books) {
-  int banyakBuku = (books.length ~/ 2);
-  return books.isEmpty
+Widget booksHorizontalScroll(BuildContext context, List<Book> multipleBooks) {
+  int banyakBuku = (multipleBooks.length ~/ 2);
+  return multipleBooks.isEmpty
       ? const Center(
           child: CircularProgressIndicator(),
         )
       : SizedBox(
           height: 238,
-          width: MediaQuery.of(context).size.width,
+          width: deviceScreenWidth(context),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: banyakBuku,
             itemBuilder: (context, index) {
-              final book = books[index];
+              final singleBook = multipleBooks[index];
               return GestureDetector(
                 onTap: () {
-                  Get.to(() => DetailBuku(book: book));
+                  Get.to(() => DetailBuku(book: singleBook));
                 },
                 child: Row(
                   children: [
@@ -33,28 +35,25 @@ Widget booksHorizontalScroll(BuildContext context, List<Book> books) {
                             child: Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: NetworkImage(book.imageUrl),
+                                  image: NetworkImage(singleBook.imageUrl),
                                   fit: BoxFit.cover,
                                 ),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(12),
-                                ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                               height: 206,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          tHeightSpace(8),
                           Text(
-                            book.title,
+                            singleBook.title,
+                            style: Theme.of(context).textTheme.bodyLarge,
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                            maxLines: 1,
                           )
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    )
+                    tWidthSpace(20),
                   ],
                 ),
               );

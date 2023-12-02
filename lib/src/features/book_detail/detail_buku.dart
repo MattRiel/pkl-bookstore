@@ -1,38 +1,39 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:bookstore/src/constants/text_strings.dart';
-import 'package:bookstore/src/features/book_detail/detailTopBar.dart';
-import 'package:bookstore/src/features/book_detail/detail_text_style.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+import '../../constants/text_strings.dart';
+import '../../utils/const_widget/sized_boxed.dart';
+import '../../utils/screen_theme/reusable_theme.dart';
 import '../beranda/model/book_model.dart';
+import 'detail_textstyle.dart';
+import 'detail_topbar.dart';
 
 class DetailBuku extends StatelessWidget {
   final Book book;
 
-  DetailBuku({required this.book});
+  const DetailBuku({super.key, required this.book});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF04437),
+      backgroundColor:
+          ThemeUtils.isDarkMode(context) ? tWhatsappBgColor : tPrimaryColor,
       appBar: AppBar(
-        backgroundColor: Color(0xFFF04437),
+        backgroundColor: const Color(0xFFF04437),
         elevation: 0,
         actions: [
-          detailTopBar(
+          DetailTopbar(
             book: book,
           )
         ],
       ),
       body: SizedBox(
-        width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
             Container(
+              // color: Colors.grey,
               height: 370,
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: Column(
@@ -52,35 +53,31 @@ class DetailBuku extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    tHeightSpace(20),
                     Expanded(
                       child: SizedBox(
                         height: 44,
                         child: Column(
                           children: [
                             FittedBox(
-                              fit: BoxFit.scaleDown, // Adjust the text to fit
+                              fit: BoxFit.scaleDown,
                               child: Text(
                                 book.title,
-                                style: DetailTextStyle.headline1,
+                                style: Theme.of(context).textTheme.displayLarge,
                               ),
                             ),
                             FittedBox(
-                              fit: BoxFit.scaleDown, // Adjust the text to fit
+                              fit: BoxFit.scaleDown,
                               child: Text(
                                 book.author,
-                                style: DetailTextStyle.subheadline1,
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    tHeightSpace(20),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,17 +86,17 @@ class DetailBuku extends StatelessWidget {
                           children: [
                             Text(
                               tBookLang,
-                              style: DetailTextStyle.title1,
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                             Text(
                               book.language,
-                              style: DetailTextStyle.subtitle1,
+                              style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
                         ),
                         Column(
                           children: [
-                            Text(
+                            const Text(
                               tBookPage,
                               style: DetailTextStyle.title1,
                             ),
@@ -115,30 +112,26 @@ class DetailBuku extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            tHeightSpace(20),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20),
                     topLeft: Radius.circular(20),
                   ),
-                  color: Colors.white,
+                  color: tWhiteColor,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       tBookAboutTitle,
-                      style: DetailTextStyle.aboutStyle,
+                      style: Theme.of(context).textTheme.displayLarge,
                     ),
-                    SizedBox(
-                      height: 11,
-                    ),
+                    tHeightSpace(11),
                     Text(
                       book.description,
                       style: DetailTextStyle.contentStyle,
@@ -146,22 +139,22 @@ class DetailBuku extends StatelessWidget {
                       maxLines: 10,
                       textAlign: TextAlign.justify,
                     ),
+                    tHeightSpace(12),
                     SizedBox(
-                      height: 12,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
+                      height: 30,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF344054),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          backgroundColor: const Color(0xFF344054),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12),
+                            ),
                           ),
                         ),
                         onPressed: () {},
                         child: Text(
                           tBookReadButton,
-                          style: DetailTextStyle.title1,
+                          style: DetailTextStyle.title1.copyWith(fontSize: 12),
                         ),
                       ),
                     ),

@@ -2,9 +2,11 @@
 
 import 'package:bookstore/src/constants/image_strings.dart';
 import 'package:bookstore/src/constants/text_strings.dart';
-import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
-import 'package:bookstore/src/reusable_widgets/allTopBar.dart';
+import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
+import 'package:bookstore/src/reusable_widgets/all_topbar.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utils/screen_theme/reusable_theme.dart';
 
 class FavoriteNoBook extends StatelessWidget {
   final int favoriteIndex;
@@ -19,7 +21,7 @@ class FavoriteNoBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ThemeUtils.getBackgroundColor(context),
       appBar: AppBar(
         elevation: 0,
         actions: [

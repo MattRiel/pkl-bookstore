@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class profileTopBar extends StatelessWidget {
-  const profileTopBar({
+class ProfileTopbar extends StatelessWidget {
+  const ProfileTopbar({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFF2F4F7),
+      color: Colors.green[500],
       width: MediaQuery.of(context).size.width,
       child: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24),

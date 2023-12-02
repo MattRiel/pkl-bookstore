@@ -1,13 +1,15 @@
 import 'package:bookstore/src/features/beranda/model/book_model.dart';
+import 'package:bookstore/src/utils/const_widget/device_sizes.dart';
+import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../book_detail/detailBuku.dart';
+import '../book_detail/detail_buku.dart';
 
 class BukuGridView extends StatelessWidget {
-  final List<Book> books;
+  final List<Book> multipleBooks;
 
-  const BukuGridView({required this.books, super.key});
+  const BukuGridView({required this.multipleBooks, super.key});
 
   int _calculateCrossAxisCount(double width) {
     if (width >= 1200) {
@@ -21,84 +23,66 @@ class BukuGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = deviceScreenWidth(context);
     int crossAxisCount = _calculateCrossAxisCount(screenWidth);
-    return SingleChildScrollView(
-      child: SizedBox(
-        height: 580,
-        child: GridView.builder(
-          itemCount: books.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 30,
-              childAspectRatio: 140 / 250,
-              crossAxisCount: crossAxisCount),
-          itemBuilder: (context, index) {
-            final itemBookGrid = books[index];
-            return Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: InkWell(
-                onTap: () {
-                  Get.to(() => DetailBuku(book: itemBookGrid));
-                },
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(itemBookGrid.imageUrl),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+    return GridView.builder(
+      shrinkWrap: true,
+      itemCount: multipleBooks.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 30,
+          childAspectRatio: 140 / 250,
+          crossAxisCount: crossAxisCount),
+      itemBuilder: (context, index) {
+        final singleBook = multipleBooks[index];
+        return Card(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: InkWell(
+            onTap: () {
+              Get.to(() => DetailBuku(book: singleBook));
+            },
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: NetworkImage(singleBook.imageUrl),
+                        fit: BoxFit.fill,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            itemBookGrid.title,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            itemBookGrid.author,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
-                              color: Color(0xFF7A7A7A),
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            );
-          },
-        ),
-      ),
+                tHeightSpace(8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        singleBook.title,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                      Text(
+                        singleBook.author,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
 AppBar buildAppBar(
@@ -9,27 +10,24 @@ AppBar buildAppBar(
   return AppBar(
     elevation: 0,
     actions: [
-      Container(
+      SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.only(left: 24, right: 24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
-                Icons.menu_outlined,
-                color: Colors.black,
-              ),
+              tWidthSpace(20),
               TextButton(
                 onPressed: () {},
                 child: Text(
                   title,
-                  style: TextStyle(fontSize: 20, color: Colors.black),
+                  style: const TextStyle(fontSize: 20, color: Colors.black),
                 ),
               ),
               IconButton(
                 splashRadius: 25,
-                splashColor: Colors.green[500],
+                splashColor: Colors.black,
                 onPressed: toggleView,
                 icon: Icon(
                   isGridView
@@ -44,6 +42,6 @@ AppBar buildAppBar(
         ),
       )
     ],
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.green[500],
   );
 }

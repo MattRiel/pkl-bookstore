@@ -1,18 +1,20 @@
 import 'package:bookstore/src/constants/image_strings.dart';
 import 'package:bookstore/src/constants/text_strings.dart';
-import 'package:bookstore/src/reusable_widgets/allSearchBar.dart';
+import 'package:bookstore/src/reusable_widgets/all_searchbar.dart';
+import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
-import '../../reusable_widgets/allGirdListAppBar.dart';
+import '../../reusable_widgets/all_grid_list_appbar.dart';
+import '../../utils/screen_theme/reusable_theme.dart';
 
 class ReadScreen extends StatefulWidget {
   const ReadScreen({Key? key}) : super(key: key);
 
   @override
-  _ReadScreenState createState() => _ReadScreenState();
+  ReadScreenState createState() => ReadScreenState();
 }
 
-class _ReadScreenState extends State<ReadScreen> {
+class ReadScreenState extends State<ReadScreen> {
   bool _isGridView = false;
 
   int _calculateCrossAxisCount(double width) {
@@ -27,7 +29,7 @@ class _ReadScreenState extends State<ReadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AppBar _appBar = buildAppBar(
+    AppBar customAppBar = buildAppBar(
       context,
       "Bacaan",
       _isGridView,
@@ -40,8 +42,8 @@ class _ReadScreenState extends State<ReadScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     int crossAxisCount = _calculateCrossAxisCount(screenWidth);
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: _appBar,
+      backgroundColor: ThemeUtils.getBackgroundColor(context),
+      appBar: customAppBar,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -79,7 +81,7 @@ class _ReadScreenState extends State<ReadScreen> {
 
   Widget _buildGridView(int crossAxisCount) {
     return SingleChildScrollView(
-      child: Container(
+      child: SizedBox(
         height: 580,
         child: GridView.builder(
           itemCount: 7,
@@ -116,9 +118,7 @@ class _ReadScreenState extends State<ReadScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    tHeightSpace(8),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Column(
@@ -134,9 +134,7 @@ class _ReadScreenState extends State<ReadScreen> {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
-                          const SizedBox(
-                            height: 2,
-                          ),
+                          tHeightSpace(2),
                           Text(
                             '$tBookAuthor $index',
                             style: const TextStyle(
@@ -147,9 +145,7 @@ class _ReadScreenState extends State<ReadScreen> {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
-                          const SizedBox(
-                            height: 2,
-                          ),
+                          tHeightSpace(2),
                           SizedBox(
                             child: LinearProgressIndicator(
                               backgroundColor: Colors.grey,
@@ -204,47 +200,41 @@ class _ReadScreenState extends State<ReadScreen> {
               ),
               const SizedBox(width: 13),
               Expanded(
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '$tBookName $index',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '$tBookName $index',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                       ),
-                      Text(
-                        '$tBookAuthor $index',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          color: Color(0xFF7A7A7A),
-                        ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    Text(
+                      '$tBookAuthor $index',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        color: Color(0xFF7A7A7A),
                       ),
-                      const SizedBox(
-                        height: 8,
+                    ),
+                    tHeightSpace(8),
+                    SizedBox(
+                      width: 160,
+                      child: LinearProgressIndicator(
+                        backgroundColor: Colors.grey,
+                        value: index.toDouble() * 0.2,
+                        valueColor: const AlwaysStoppedAnimation(Colors.blue),
                       ),
-                      SizedBox(
-                        width: 160,
-                        child: LinearProgressIndicator(
-                          backgroundColor: Colors.grey,
-                          value: index.toDouble() * 0.2,
-                          valueColor: const AlwaysStoppedAnimation(Colors.blue),
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
               const Icon(Icons.file_download_outlined),
-              const SizedBox(
-                width: 12,
-              ),
+              tWidthSpace(12),
               const Icon(Icons.more_horiz),
             ],
           ),

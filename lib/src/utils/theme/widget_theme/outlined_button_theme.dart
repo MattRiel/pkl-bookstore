@@ -8,7 +8,7 @@ import '../../../constants/sizes.dart';
 class TOutlinedButtonTheme {
   TOutlinedButtonTheme._();
 
-  static final lightElevatedButtonTheme = OutlinedButtonThemeData(
+  static final lightOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       shape: RoundedRectangleBorder(),
       foregroundColor: tSecondarycolor,
@@ -16,7 +16,7 @@ class TOutlinedButtonTheme {
       padding: EdgeInsets.symmetric(vertical: tButtonHeight),
     ),
   );
-  static final darkElevatedButtonTheme = OutlinedButtonThemeData(
+  static final darkOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       shape: RoundedRectangleBorder(),
       foregroundColor: tWhiteColor,

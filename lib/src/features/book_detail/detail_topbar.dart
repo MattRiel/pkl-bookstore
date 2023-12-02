@@ -4,29 +4,29 @@ import 'package:get/get.dart';
 
 import '../beranda/model/book_model.dart';
 
-class detailTopBar extends StatefulWidget {
+class DetailTopbar extends StatefulWidget {
   final Book book;
 
-  detailTopBar({
+  const DetailTopbar({
     super.key,
     required this.book,
   });
 
   @override
-  State<detailTopBar> createState() => _detailTopBarState();
+  State<DetailTopbar> createState() => _DetailTopbarState();
 }
 
-class _detailTopBarState extends State<detailTopBar> {
+class _DetailTopbarState extends State<DetailTopbar> {
   final FavoriteController favoriteController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     bool isFavorite = favoriteController.isFavorite(widget.book);
     return Container(
-      color: Color(0xFFF04437),
+      color: const Color(0xFFF04437),
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -34,7 +34,7 @@ class _detailTopBarState extends State<detailTopBar> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back_ios_new),
+              icon: const Icon(Icons.arrow_back_ios_new),
               color: Colors.white,
             ),
             IconButton(
@@ -47,10 +47,18 @@ class _detailTopBarState extends State<detailTopBar> {
                 setState(() {
                   isFavorite != isFavorite;
                 });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: const Duration(milliseconds: 2000),
+                    content: !isFavorite
+                        ? const Text('Berhasil ditambahkan ke Favorit')
+                        : const Text('Berhasil dihapus dari Favorit'),
+                  ),
+                );
               },
               icon: isFavorite
-                  ? Icon(Icons.bookmark)
-                  : Icon(Icons.bookmark_outline),
+                  ? const Icon(Icons.bookmark)
+                  : const Icon(Icons.bookmark_outline),
               color: Colors.white,
             )
           ],
