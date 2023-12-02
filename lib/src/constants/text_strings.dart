@@ -9,6 +9,7 @@ const String tFullName = "Full Name";
 const String tForgetPassword = "Forget Password";
 const String tSignInWithGoogle = "Sign-In with Google";
 const String tSearch = "Cari";
+// const String googleBooksApiKey = 'Testkey';
 
 // splash screen
 const String tAppName = 'E-Book';
