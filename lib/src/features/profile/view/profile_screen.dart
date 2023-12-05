@@ -1,5 +1,6 @@
 import 'package:bookstore/src/constants/text_strings.dart';
 import 'package:bookstore/src/features/profile/widgets/profile_top_bar.dart';
+import 'package:bookstore/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +80,9 @@ class ProfileScreen extends StatelessWidget {
                     ProfileBtn(
                         text: "Keluar",
                         icon: Icons.exit_to_app,
-                        onPressed: () {}),
+                        onPressed: () {
+                          AuthenticationRepository.instance.logout();
+                        }),
                     const SizedBox(height: 24),
                   ],
                 ),

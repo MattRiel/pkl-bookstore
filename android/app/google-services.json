@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "613368996203",
+    "project_id": "toko-buku-395415",
+    "storage_bucket": "toko-buku-395415.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613368996203:android:85abef28b8993a81b3ac2e",
+        "android_client_info": {
+          "package_name": "com.example.bookstore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBwR5WwaeyI28Z-7GXPaGCb0YRIgQlMbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
