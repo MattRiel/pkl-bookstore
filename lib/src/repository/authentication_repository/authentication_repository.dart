@@ -1,4 +1,5 @@
 import 'package:bookstore/src/features/authetication/screens/welcome/welcome_screen.dart';
+import 'package:bookstore/src/repository/authentication_repository/exception/login_email_password_failure.dart';
 import 'package:bookstore/src/repository/authentication_repository/exception/signup_email_password_failure.dart';
 import 'package:bookstore/src/routing/screen_routing.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,7 +52,35 @@ class AuthenticationRepository extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-    } catch (_) {}
+      final errorMessage =
+          LoginWithEmailAndPasswordFailure.code(e.code).message;
+
+      // Show a Snackbar with the error message
+      Get.snackbar(
+        'Login Error',
+        errorMessage,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(milliseconds: 1000),
+        animationDuration: const Duration(milliseconds: 200),
+      );
+
+      // Throw the actual exception for further handling
+      throw LoginWithEmailAndPasswordFailure(message: errorMessage);
+    } catch (error) {
+      // Handle other unexpected errors
+
+      // Show a Snackbar with a generic error message
+      Get.snackbar(
+        'Error',
+        'An unexpected error occurred. Please try again.',
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(milliseconds: 1000),
+        animationDuration: const Duration(milliseconds: 200),
+      );
+
+      // Rethrow the exception for further handling
+      rethrow;
+    }
   }
 
   Future<void> logout() async => await _auth.signOut();

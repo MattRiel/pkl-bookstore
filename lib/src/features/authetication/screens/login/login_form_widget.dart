@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:bookstore/src/features/authetication/controller/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
@@ -13,13 +15,17 @@ class LoginFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
+    final _formKey = GlobalKey<FormState>();
     return Form(
+      key: _formKey,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: tFormHeight - 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller: controller.email,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person_outline),
                 labelText: tEmail,
@@ -29,6 +35,7 @@ class LoginFormWidget extends StatelessWidget {
             ),
             SizedBox(height: tFormHeight - 20),
             TextFormField(
+              controller: controller.password,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.fingerprint),
                 labelText: tPassword,
@@ -59,7 +66,14 @@ class LoginFormWidget extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () {}, child: Text(tLogin.toUpperCase())),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      LoginController.instance.loginUser(
+                          controller.email.text.trim(),
+                          controller.password.text.trim());
+                    }
+                  },
+                  child: Text(tLogin)),
             )
           ],
         ),
