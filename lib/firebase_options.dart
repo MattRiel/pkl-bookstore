@@ -23,15 +23,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -65,5 +59,23 @@ class DefaultFirebaseOptions {
     messagingSenderId: '613368996203',
     projectId: 'toko-buku-395415',
     storageBucket: 'toko-buku-395415.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyAkNCJA8Jp46H-Z6aWUokbz4lkHzih8IUs',
+    appId: '1:613368996203:ios:5c17aa4ce5479a93b3ac2e',
+    messagingSenderId: '613368996203',
+    projectId: 'toko-buku-395415',
+    storageBucket: 'toko-buku-395415.appspot.com',
+    iosBundleId: 'com.example.bookstore',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAkNCJA8Jp46H-Z6aWUokbz4lkHzih8IUs',
+    appId: '1:613368996203:ios:76267a5bf2320325b3ac2e',
+    messagingSenderId: '613368996203',
+    projectId: 'toko-buku-395415',
+    storageBucket: 'toko-buku-395415.appspot.com',
+    iosBundleId: 'com.example.bookstore.RunnerTests',
   );
 }

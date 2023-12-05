@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:bookstore/src/features/authetication/controller/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../constants/sizes.dart';
@@ -12,6 +14,8 @@ class OTPScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var otpController = Get.put(OTPController());
+    var otp;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(tDefaultSize),
@@ -44,11 +48,8 @@ class OTPScreen extends StatelessWidget {
               filled: true,
               fillColor: Colors.black.withOpacity(0.1),
               onSubmit: (code) {
-                ScaffoldMessenger(
-                  child: SnackBar(
-                    content: Text('OTP => $code'),
-                  ),
-                );
+                otp = code;
+                OTPController.instance.verifyOTP(otp);
               },
             ),
             SizedBox(
@@ -57,7 +58,9 @@ class OTPScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  OTPController.instance.verifyOTP(otp);
+                },
                 child: Text(tNext),
               ),
             )
