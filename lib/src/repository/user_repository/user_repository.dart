@@ -1,32 +1,41 @@
 import 'package:bookstore/src/features/authetication/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-// Fungsi CRUD User akan dimulai di file ini
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
   final _db = FirebaseFirestore.instance;
 
-  createUser(UserModel user) async {
-    await _db
-        .collection("Users")
-        .add(user.toJson())
-        .whenComplete(
-          () => Get.snackbar(
-            "Berhasil",
-            'Akun anda berhasil dibuat',
-            snackPosition: SnackPosition.BOTTOM,
-          ),
-        )
-        .catchError((error, stackTrace) {
+  Future<void> createUserAndStoreInFirestore(UserModel user) async {
+    try {
+      // Create user in Firebase Authentication
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+
+      // Retrieve the current user after authentication
+      final currentUser = FirebaseAuth.instance.currentUser;
+
+      // Store user data in Firestore
+      if (currentUser != null) {
+        await _db.collection("Users").doc(currentUser.uid).set(user.toJson());
+        Get.snackbar(
+          "Berhasil",
+          'Akun anda berhasil dibuat',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } catch (error) {
       Get.snackbar(
         'Error',
         'Terjadi kesalahan. Coba lagi',
         snackPosition: SnackPosition.BOTTOM,
       );
       print(error.toString());
-    });
+    }
   }
 
   // fetch 1 user
@@ -34,6 +43,7 @@ class UserRepository extends GetxController {
     final snapshot =
         await _db.collection("Users").where("Email", isEqualTo: email).get();
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+    print(userData.fullName.toString());
     return userData;
   }
 

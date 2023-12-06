@@ -1,10 +1,11 @@
 import 'package:bookstore/src/features/authetication/screens/welcome/welcome_screen.dart';
-import 'package:bookstore/src/features/profile/view/profile_screen.dart';
 import 'package:bookstore/src/repository/authentication_repository/exception/login_email_password_failure.dart';
-import 'package:bookstore/src/repository/authentication_repository/exception/signup_email_password_failure.dart';
 import 'package:bookstore/src/routing/screen_routing.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
+import '../../features/authetication/screens/forget_password/forget_password_otp/otp_screen.dart';
+import 'exception/signup_email_password_failure.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -28,13 +29,35 @@ class AuthenticationRepository extends GetxController {
   _setInitialScreen(User? user) {
     // memastikan status pengguna login atau logout
     // user == null
-    user != null
+    user == null
         ? Get.offAll(() => const WelcomeScreen())
         //  : Get.offAll(() => const MainScreen());
-        : Get.offAll(() => const ProfileScreen());
+        : Get.offAll(() => const MainScreen());
   }
 
-  // Autentikasi dengan Nomor HP
+  Future<void> registerUserWithPhoneNoAndPassword(
+      String email, String password, String phoneNo) async {
+    try {
+      // Create a new user with email and password
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+
+      // Initiate phone authentication
+      await phoneAuthentication(phoneNo);
+
+      // Navigate to OTPScreen
+      Get.to(() => OTPScreen());
+    } on FirebaseAuthException catch (e) {
+      final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
+      print("Error firebase: ${ex.message}");
+      throw ex;
+    } catch (_) {
+      const ex = SignUpWithEmailAndPasswordFailure();
+      print("Exception: ${ex.message}");
+      throw ex;
+    }
+  }
+
   Future<void> phoneAuthentication(String phoneNo) async {
     await _auth.verifyPhoneNumber(
       phoneNumber: phoneNo,
@@ -42,9 +65,11 @@ class AuthenticationRepository extends GetxController {
         await _auth.signInWithCredential(credential);
       },
       codeSent: (verificationId, resendToken) {
+        // Store the verificationId if needed
         this.verificationId.value = verificationId;
       },
       codeAutoRetrievalTimeout: (verificationId) {
+        // Store the verificationId if needed
         this.verificationId.value = verificationId;
       },
       verificationFailed: (e) {
@@ -62,26 +87,6 @@ class AuthenticationRepository extends GetxController {
         PhoneAuthProvider.credential(
             verificationId: this.verificationId.value, smsCode: otp));
     return credentials.user != null ? true : false;
-  }
-
-  // Daftar akun
-  Future<void> createUserWithEmailAndPassword(
-      String email, String password) async {
-    try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      firebaseUser.value != null
-          ? Get.offAll(() => MainScreen())
-          : Get.to(() => WelcomeScreen());
-    } on FirebaseAuthException catch (e) {
-      final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      print("Error firebase :${ex.message} ");
-      throw ex;
-    } catch (_) {
-      const ex = SignUpWithEmailAndPasswordFailure();
-      print("Exception : ${ex.message}");
-      throw ex;
-    }
   }
 
   // Login Akun

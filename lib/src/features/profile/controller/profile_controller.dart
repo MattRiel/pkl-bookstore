@@ -1,11 +1,18 @@
-import '../../../constants/text_strings.dart';
-import '../model/profile_model.dart';
+import 'package:bookstore/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:bookstore/src/repository/user_repository/user_repository.dart';
+import 'package:get/get.dart';
 
-class ProfileController {
-  final ProfileModel _model = ProfileModel(
-    name: tProfileName,
-    email: tProfileEmail,
-  );
+class ProfileController extends GetxController {
+  static ProfileController get instance => Get.find();
+  final _authrepo = Get.put(AuthenticationRepository());
+  final _userRepo = Get.put(UserRepository());
 
-  ProfileModel get profileData => _model;
+  getUserData() {
+    final email = _authrepo.firebaseUser.value?.email;
+    if (email != null) {
+      return _userRepo.getUserDetails(email);
+    } else {
+      print("Gagal memuat data");
+    }
+  }
 }
