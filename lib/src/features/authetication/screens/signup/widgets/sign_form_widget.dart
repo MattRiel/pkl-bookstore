@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bookstore/src/features/authetication/controller/signup_controller.dart';
-import 'package:bookstore/src/features/authetication/screens/forget_password/forget_password_otp/otp_screen.dart';
+import 'package:bookstore/src/features/authetication/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -66,9 +66,12 @@ class SignUpFormWidget extends StatelessWidget {
                     //     controller.email.text.trim(),
                     //     controller.password.text.trim());
 
-                    SignupController.instance
-                        .phoneAuthentication(controller.phoneNo.text.trim());
-                    Get.to(() => OTPScreen());
+                    final user = UserModel(
+                        fullname: controller.fullName.text.trim(),
+                        email: controller.email.text.trim(),
+                        phoneNo: controller.phoneNo.text.trim(),
+                        password: controller.password.text.trim());
+                    SignupController.instance.createUser(user);
                   }
                 },
                 child: Text(tSignup.toUpperCase()),
