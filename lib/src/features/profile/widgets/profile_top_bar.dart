@@ -8,33 +8,15 @@ class ProfileTopbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green[500],
+      padding: EdgeInsets.symmetric(horizontal: 24),
       width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Icon(
-              Icons.menu_outlined,
-              color: Colors.black,
+      child: Text(
+        "Profil",
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                "Profil",
-                style: TextStyle(fontSize: 20, color: Colors.black),
-              ),
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.grid_view_outlined,
-                color: Colors.black,
-              ),
-              onPressed: () {},
-            )
-          ],
-        ),
       ),
     );
   }

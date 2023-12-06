@@ -1,4 +1,5 @@
 import 'package:bookstore/src/features/authetication/screens/welcome/welcome_screen.dart';
+import 'package:bookstore/src/features/profile/view/profile_screen.dart';
 import 'package:bookstore/src/repository/authentication_repository/exception/login_email_password_failure.dart';
 import 'package:bookstore/src/repository/authentication_repository/exception/signup_email_password_failure.dart';
 import 'package:bookstore/src/routing/screen_routing.dart';
@@ -23,10 +24,14 @@ class AuthenticationRepository extends GetxController {
     ever(firebaseUser, _setInitialScreen);
   }
 
+  // Gunakan ini untuk tes layar karena akan menimpa Home di main.dart
   _setInitialScreen(User? user) {
-    user == null
+    // memastikan status pengguna login atau logout
+    // user == null
+    user != null
         ? Get.offAll(() => const WelcomeScreen())
-        : Get.offAll(() => const MainScreen());
+        //  : Get.offAll(() => const MainScreen());
+        : Get.offAll(() => const ProfileScreen());
   }
 
   // Autentikasi dengan Nomor HP

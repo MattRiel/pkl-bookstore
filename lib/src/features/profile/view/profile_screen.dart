@@ -1,95 +1,113 @@
 import 'package:bookstore/src/constants/text_strings.dart';
+import 'package:bookstore/src/features/profile/view/updateprofile_screen.dart';
 import 'package:bookstore/src/features/profile/widgets/profile_top_bar.dart';
 import 'package:bookstore/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:bookstore/src/utils/const_widget/sized_boxed.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/screen_theme/reusable_theme.dart';
 import '../widgets/profile_btn_widget.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
   Widget build(BuildContext context) {
+    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       backgroundColor: ThemeUtils.getBackgroundColor(context),
       appBar: AppBar(
         elevation: 0,
         actions: const [ProfileTopbar()],
-        backgroundColor: Colors.green[500],
+        backgroundColor: ThemeUtils.getNavbarBackgroundColor(context),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 60),
-            Center(
-              child: Container(
-                alignment: Alignment.topCenter,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 47,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        children: [
+          tHeightSpace(60),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.transparent : Colors.grey[100],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  height: 47,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
-                          const CircleAvatar(
-                            child: SizedBox(
-                              height: 47,
-                              width: 47,
-                              child: Icon(Icons.person),
-                            ),
+                          CircleAvatar(
+                            backgroundColor:
+                                isDark ? Colors.grey : Colors.transparent,
+                            child: Icon(Icons.person),
                           ),
                           tWidthSpace(24),
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                tProfileName,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text(
-                                tProfileEmail,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                              Text(tProfileName,
+                                  style: Theme.of(context).textTheme.bodyLarge),
+                              Text(tProfileEmail,
+                                  style: Theme.of(context).textTheme.bodySmall),
                             ],
                           )
                         ],
                       ),
-                    ),
-                    tHeightSpace(24),
-                    ProfileBtn(
-                        text: "Notifikasi",
-                        icon: Icons.toggle_on_rounded,
-                        onPressed: () {}),
-                    const SizedBox(height: 24),
-                    ProfileBtn(
-                        text: "Bantuan",
-                        icon: Icons.arrow_forward_ios_rounded,
-                        onPressed: () {}),
-                    const SizedBox(height: 24),
-                    ProfileBtn(
-                        text: "Keluar",
-                        icon: Icons.exit_to_app,
+                      IconButton(
+                        icon: Icon(Icons.edit),
                         onPressed: () {
-                          AuthenticationRepository.instance.logout();
-                        }),
-                    const SizedBox(height: 24),
-                  ],
+                          Get.to(() => UpdateProfileScreen());
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                tHeightSpace(24),
+                ProfileBtn(
+                  text: "Notifikasi",
+                  icon: Icons.toggle_on_rounded,
+                  onPressed: () {},
+                ),
+                tHeightSpace(24),
+                ProfileBtn(
+                  text: isDark ? "Mode gelap" : "Mode terang",
+                  icon: isDark
+                      ? Icons.dark_mode_outlined
+                      : Icons.wb_sunny_outlined,
+                  onPressed: () {},
+                ),
+                tHeightSpace(24),
+                ProfileBtn(
+                  text: 'Pengaturan',
+                  icon: Icons.settings,
+                  onPressed: () {},
+                ),
+                tHeightSpace(24),
+                ProfileBtn(
+                  text: "Keluar",
+                  icon: Icons.exit_to_app,
+                  onPressed: () {
+                    AuthenticationRepository.instance.logout();
+                  },
+                ),
+                tHeightSpace(24),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
