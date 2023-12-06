@@ -1,4 +1,6 @@
 // Simpan data ke Firestore
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   final String? id;
   final String fullname;
@@ -22,5 +24,20 @@ class UserModel {
       "Phone": phoneNo,
       "Password": password,
     };
+  }
+
+  // Fetch data dari Firebase
+
+  // Map user ke dalam model
+  factory UserModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    // if null, then use !
+    final data = document.data()!;
+    return UserModel(
+        id: document.id,
+        fullname: data["FullName"],
+        email: data["Email"],
+        phoneNo: data["Phone"],
+        password: data["Password"]);
   }
 }
