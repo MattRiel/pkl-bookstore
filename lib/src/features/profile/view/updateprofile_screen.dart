@@ -106,7 +106,7 @@ class UpdateProfileScreen extends StatelessWidget {
                         child: Text('Ubah Profile'),
                       ),
                       Text(
-                        "Terdaftar pada : Tanggal 20 Maret",
+                        "Terdaftar pada : Tanggal -",
                         style: TextStyle(color: Colors.green[200]),
                       ),
                       tHeightSpace(24),
