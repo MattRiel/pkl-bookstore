@@ -3,14 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
   final String? id;
-  final String fullname;
+  final String fullName;
   final String email;
   final String phoneNo;
   final String password;
 
   UserModel({
     this.id,
-    required this.fullname,
+    required this.fullName,
     required this.email,
     required this.phoneNo,
     required this.password,
@@ -19,7 +19,7 @@ class UserModel {
   // Konversi data ke JSON
   toJson() {
     return {
-      "FullName": fullname,
+      "FullName": fullName,
       "Email": email,
       "Phone": phoneNo,
       "Password": password,
@@ -35,7 +35,7 @@ class UserModel {
     final data = document.data()!;
     return UserModel(
         id: document.id,
-        fullname: data["FullName"],
+        fullName: data["FullName"],
         email: data["Email"],
         phoneNo: data["Phone"],
         password: data["Password"]);

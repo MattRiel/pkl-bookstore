@@ -1,4 +1,5 @@
-import 'package:bookstore/src/constants/text_strings.dart';
+import 'package:bookstore/src/features/authetication/user_model.dart';
+import 'package:bookstore/src/features/profile/controller/profile_controller.dart';
 import 'package:bookstore/src/features/profile/view/updateprofile_screen.dart';
 import 'package:bookstore/src/features/profile/widgets/profile_top_bar.dart';
 import 'package:bookstore/src/repository/authentication_repository/authentication_repository.dart';
@@ -17,6 +18,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final controller = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -36,44 +39,99 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Container(
             child: Column(
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  decoration: BoxDecoration(
-                    color: isDark ? Colors.transparent : Colors.grey[100],
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  height: 47,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor:
-                                isDark ? Colors.grey : Colors.transparent,
-                            child: Icon(Icons.person),
+                FutureBuilder(
+                  future: controller.getUserData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      // Loading state
+                      return CircularProgressIndicator(); // You can use your own loading indicator
+                    } else if (snapshot.hasError) {
+                      // Error state
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        decoration: BoxDecoration(
+                          color: isDark ? Colors.transparent : Colors.grey[100],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        height: 47,
+                        child: Center(
+                          child: Text(
+                            'Error loading user data',
+                            style: TextStyle(
+                                color:
+                                    Colors.red), // Customize error text style
                           ),
-                          tWidthSpace(24),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(tProfileName,
-                                  style: Theme.of(context).textTheme.bodyLarge),
-                              Text(tProfileEmail,
-                                  style: Theme.of(context).textTheme.bodySmall),
-                            ],
-                          )
-                        ],
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.edit),
-                        onPressed: () {
-                          Get.to(() => UpdateProfileScreen());
-                        },
-                      ),
-                    ],
-                  ),
+                        ),
+                      );
+                    } else if (snapshot.hasData) {
+                      UserModel userData = snapshot.data as UserModel;
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        decoration: BoxDecoration(
+                          color: isDark ? Colors.transparent : Colors.grey[100],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        height: 47,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor:
+                                      isDark ? Colors.grey : Colors.transparent,
+                                  child: Icon(Icons.person),
+                                ),
+                                tWidthSpace(24),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      userData.fullName,
+                                      // Assuming 'name' is the user's name property
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                    ),
+                                    Text(
+                                      userData.email,
+                                      // Assuming 'email' is the user's email property
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.edit),
+                              onPressed: () {
+                                Get.to(() => UpdateProfileScreen());
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      // Empty state
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        decoration: BoxDecoration(
+                          color: isDark ? Colors.transparent : Colors.grey[100],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        height: 47,
+                        child: Center(
+                          child: Text(
+                            'No data available',
+                            style: TextStyle(
+                                color: Colors
+                                    .grey), // Customize empty state text style
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 ),
                 tHeightSpace(24),
                 ProfileBtn(
