@@ -12,6 +12,8 @@ Feel free to explore the application demo [here](https://appetize.io/app/lkm3vk2
 
 Give the app a try on Android 11 devices.
 
+You can download and install the app from the [Play Store](https://play.google.com/store/apps/details?id=com.cicada.oge).
+
 *Kindly acknowledge that the application is currently under development and will undergo periodic updates.*
 
 ## Installation
